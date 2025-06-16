@@ -1,4 +1,4 @@
-<p align="center"><a href="https://tim-vn.tech/" target="_blank"><img src="https://raw.githubusercontent.com/locmaymo/tim-vn.tech/test/public/image/logo-tim.png" width="200" alt="Logo"></a></p>
+<p align="center"><a href="https://tim-vn.tech/" target="_blank"><img src="https://raw.githubusercontent.com/locmaymo/tim-vn.tech/test/public/image/logo-vieclam24h.png" width="200" alt="Logo"></a></p>
 
 
 
