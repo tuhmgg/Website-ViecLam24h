@@ -18,7 +18,7 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 
 ## Cài đặt
 ### Hướng dẫn cài đặt và chạy project Laravel sau khi clone từ GitHub
-0. <b>Lưu Lý:</b> tôi đã deploy sẵn trang web nên để tiết kiệm thời gian bạn có thể bỏ qua bước cài đặt. Và đến phần [Xem Website](#Xem-Website)
+0. <b>Lưu ý:</b> tôi đã deploy sẵn trang web nên để tiết kiệm thời gian bạn có thể bỏ qua bước cài đặt.
 1. Cài Xampp
 2. Cài Composer
 3. Cài một IDE như PhpStorm hoặc VSCode
