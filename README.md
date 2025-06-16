@@ -2,7 +2,7 @@
 
 
 
-# Đề Tài Tốt Nghiệp: Website Tìm Kiếm Việc Làm
+# Đề Tài Tốt Nghiệp: Website Tìm Kiếm Việc Làm 24h
 
 Đây là dự án đề tài tốt nghiệp - xây dựng Website Việc Làm 24h.
 
