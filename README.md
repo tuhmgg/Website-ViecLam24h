@@ -1,13 +1,15 @@
-<p align="center"><a href="#" target="_blank"><img src="https://github.com/tuhmgg/Website-ViecLam24h/blob/master/public/image/logo-vieclam24h.png" width="200" alt="Logo"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://github.com/tuhmgg/Website-ViecLam24h/blob/master/public/image/logo-vieclam24h.png" width="200" height="200" alt="Logo"></a></p>
 
 
 
 # Đề Tài Tốt Nghiệp: Website Việc Làm 24h
 
-Đây là dự án đề tài tốt nghiệp - xây dựng Website Việc Làm 24h.
+## Tổng Quan Dự Án: 
+Website Việc Làm 24h là một website tìm kiếm việc làm nhanh chóng và hiệu quả, chuyên cung cấp thông tin tuyển dụng đa ngành nghề trong phạm vi nội địa. Website được thiết kế tập trung, minh bạch và đổi mới nhằm mang đến trải nghiệm dễ sử dụng, dễ tiếp cận cho tất cả đối tượng người dùng, bao gồm sinh viên mới ra trường, người có kinh nghiệm làm việc, lao động phổ thông và cả các freelancer tự do.
+
+### [Link Website] (https://github.com/tuhmgg/Website-ViecLam24h)
 
 ## Mô Tả
-
 Website được xây dựng với mục tiêu cung cấp một nền tảng cho người tìm việc và nhà tuyển dụng. Có các tính năng chính sau:
 - Đăng ký và đăng nhập cho ứng viên và nhà tuyển dụng.
 - Tìm kiếm việc làm dựa trên mức lương, địa chỉ.
