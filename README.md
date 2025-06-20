@@ -2,7 +2,7 @@
 
 
 
-# Đề Tài Tốt Nghiệp: Website Việc Làm 24h https://img.icons8.com/?size=100&id=EXPHaRb2w3B8&format=png&color=000000
+# Đề Tài Tốt Nghiệp: Website Việc Làm 24h 
 
 ## Tổng Quan Dự Án: 
 Website Việc Làm 24h là một website tìm kiếm việc làm nhanh chóng và hiệu quả, chuyên cung cấp thông tin tuyển dụng đa ngành nghề trong phạm vi nội địa. Website được thiết kế tập trung, minh bạch và đổi mới nhằm mang đến trải nghiệm dễ sử dụng, dễ tiếp cận cho tất cả đối tượng người dùng, bao gồm sinh viên mới ra trường, người có kinh nghiệm làm việc, lao động phổ thông và cả các freelancer tự do.
