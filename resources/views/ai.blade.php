@@ -140,6 +140,10 @@
             border-radius: 50%;
             transition: all 0.3s;
         }
+
+        .scroll-to-top:focus, .scroll-to-top:hover {
+            color: white;
+        }
         
         .scroll-to-top:hover {
             background-color: #1cc88a;
