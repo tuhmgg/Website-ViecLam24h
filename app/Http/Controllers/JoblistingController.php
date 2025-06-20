@@ -17,7 +17,7 @@ class JoblistingController extends Controller
     {
 //        return Listing::with('profile')->get();
 //        lấy ra 8 job mới nhất phân trang
-        $jobs = Listing::with('profile')->latest()->paginate(8);
+        $jobs = Listing::with('profile')->whereHas('profile')->latest()->paginate(8);
         $jobType = "";
         $salaryRange = "";
         $search = "";
