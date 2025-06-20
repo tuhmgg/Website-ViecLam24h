@@ -298,14 +298,17 @@
             height: 2.75rem;
             text-align: center;
             color: #fff;
-            background: rgba(78, 115, 223, 0.5);
+            background: rgba(28, 200, 138, 0.5);
             line-height: 46px;
             border-radius: 50%;
             transition: all 0.3s;
         }
         
+        .scroll-to-top:focus, .scroll-to-top:hover {
+            color: white;
+        }
         .scroll-to-top:hover {
-            background-color: #4e73df;
+            background-color: #1cc88a;
         }
         
         .scroll-to-top.show {

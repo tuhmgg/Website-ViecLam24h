@@ -29,7 +29,7 @@
                 <div class="col-lg-10">
                     <div class="text-center mb-5">
                         <h2 class="h3 fw-bold mb-4" style="color: #1e293b;">
-                            Chào mừng bạn đến với <span style="color: #3b82f6;">vieclam24h</span>
+                            Chào mừng bạn đến với <span style="color: #3b82f6;">ViecLam24h</span>
                         </h2>
                         <p class="lead text-muted">
                             Nền tảng tuyển dụng hàng đầu Việt Nam, nơi kết nối hàng triệu ứng viên 
@@ -45,13 +45,10 @@
                     <div class="pe-lg-4">
                         <h3 class="h4 fw-bold mb-3" style="color: #1e293b;">Sứ mệnh của chúng tôi</h3>
                         <p class="text-muted mb-4">
-                            Chúng tôi hiểu rằng việc tìm kiếm công việc hoặc tuyển dụng ứng viên không chỉ là 
-                            quá trình đơn thuần, mà là hành trình tìm kiếm sự phù hợp hoàn hảo giữa tài năng 
-                            và cơ hội.
+                            Website Việc Làm 24h là một website tìm kiếm việc làm nhanh chóng và hiệu quả, chuyên cung cấp thông tin tuyển dụng đa ngành nghề trong phạm vi nội địa. Website được thiết kế tập trung, minh bạch và đổi mới nhằm mang đến trải nghiệm dễ sử dụng, dễ tiếp cận cho tất cả đối tượng người dùng, bao gồm sinh viên mới ra trường, người có kinh nghiệm làm việc, lao động phổ thông và cả các freelancer tự do.
                         </p>
                         <p class="text-muted">
-                            Với vieclam24h, chúng tôi cam kết tạo ra một môi trường trực tuyến đáng tin cậy, 
-                            nơi mà cả ứng viên và nhà tuyển dụng đều có thể tìm thấy những cơ hội tốt nhất.
+                            Hệ thống đảm bảo truyền tải thông tin tuyển dụng một cách đầy đủ, chính xác và minh bạch, giúp người tìm việc tiếp cận các cơ hội phù hợp một cách nhanh nhất. Đồng thời, website cũng hỗ trợ các doanh nghiệp trong việc đăng tin tuyển dụng, quản lý ứng viên và tối ưu hóa quy trình tuyển dụng. Việc Làm 24h cam kết trở thành cầu nối uy tín giữa người lao động và nhà tuyển dụng, góp phần nâng cao hiệu quả và chất lượng thị trường lao động tại Việt Nam.
                         </p>
                     </div>
                 </div>
@@ -70,7 +67,7 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <div class="text-center mb-5">
-                        <h3 class="h4 fw-bold mb-3" style="color: #1e293b;">Với vieclam24h, bạn có thể</h3>
+                        <h3 class="h4 fw-bold mb-3" style="color: #1e293b;">Với ViecLam24h, bạn có thể</h3>
                         <p class="text-muted">Khám phá những tính năng nổi bật giúp bạn thành công</p>
                     </div>
                 </div>
