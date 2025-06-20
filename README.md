@@ -1,4 +1,4 @@
-<p align="center"><a href="#" target="_blank"><img src="https://github.com/tuhmgg/Website-ViecLam24h/blob/master/public/image/logo-vieclam24h.png" width="220" height="200" alt="Logo"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://github.com/tuhmgg/Website-ViecLam24h/blob/master/public/image/logo-vieclam24h.png" width="250" height="200" alt="Logo"></a></p>
 
 
 
