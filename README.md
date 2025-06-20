@@ -48,10 +48,11 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 4. **Cài một IDE như PhpStorm hoặc VSCode**
 
 5. **Cài đặt phụ thuộc**
+   ```bash
     composer install
     composer dumpautoload -o
-   
-7. **Sao chép tệp .env**
+   ```
+6. **Sao chép tệp .env**
 
     cp .env.example .env
     
