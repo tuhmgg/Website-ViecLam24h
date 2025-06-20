@@ -41,42 +41,45 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
   - Xác thực thanh toán gói Premium (Nhà tuyển dụng)
 
 ## 🎨 Cài đặt
-1. ** Cài Xampp **
-2. Cài Composer
-3. Cài một IDE như PhpStorm hoặc VSCode
+1. **Cài Xampp**
+   
+3. **Cài Composer**
 
-### Di chuyển vào thư mục project và chạy các lệnh
+4. **Cài một IDE như PhpStorm hoặc VSCode**
+
+5. **Cài đặt phụ thuộc**
     composer install
     composer dumpautoload -o
-Cấu hình tập tin .env
-Sao chép từ tập tin mẫu .env.example sang .env
+   
+7. **Sao chép tệp .env**
+- Sao chép từ tập tin mẫu .env.example sang .env
 
     cp .env.example .env
     
-Tạo key cho ứng dụng
+8. **Tạo key cho ứng dụng**
 
     php artisan key:generate
     
-Chỉnh sửa các thông số cấu hình trong tập tin .env cho phù hợp môi trường (APP_, DB_, Mật khẩu DB) ví dụ [Link tới file .env mẫu](File_env_cua_toi)
+- Chỉnh sửa các thông số cấu hình trong tập tin .env cho phù hợp môi trường (APP_, DB_, Mật khẩu DB) ví dụ [Link tới file .env mẫu](File_env_cua_toi)
 
-Xóa và tạo lại cache
+9. **Xóa và tạo lại cache**
 
     php artisan config:clear
     php artisan config:cache
     
-Tạo symbolic link giữa storage và public
+10. **Tạo symbolic link giữa storage và public**
 
     php artisan storage:link
 
-Chạy Miragte tạo DB
+11. **Chạy Miragte tạo DB**
 
     php artisan migrate
 
-Chạy server development
+12. **Chạy server development**
 
     php artisan serve
     
-Như vậy là đã sẵn sàng để chạy project Laravel sau khi clone từ GitHub.
+- Như vậy là đã sẵn sàng để chạy project Laravel sau khi clone từ GitHub.
 
 ## Dữ Liệu Mẫu Và Các Phần Khác
 Để import dữ liệu mẫu, bạn có thể sử dụng file SQL sau: [Link tới file SQL](laravel.sql)
