@@ -78,7 +78,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if($user->hasVerifiedEmail()){
-            return redirect() -> route('home') -> with('success', 'Email của bạn đã được xác minh');
+            return redirect() -> route('homepage') -> with('success', 'Email của bạn đã được xác minh');
         }
 
         $user -> sendEmailVerificationNotification();
