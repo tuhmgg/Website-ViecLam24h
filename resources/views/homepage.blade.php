@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-lg-6 text-center ps-lg-2">
-                    <img class="img-fluid" src="{{asset('img/banner.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
+                    <img class="img-fluid" src="{{asset('image/banner-man2.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
                 </div>
             </div>
         </div>
