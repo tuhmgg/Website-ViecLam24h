@@ -9,7 +9,7 @@ Website Việc Làm 24h là một website tìm kiếm việc làm nhanh chóng v
 
 ### [Link Website] (https://github.com/tuhmgg/Website-ViecLam24h)
 
-## Mô Tả
+## 🎯 Mô tả
 Website được xây dựng với mục tiêu cung cấp một nền tảng cho người tìm việc và nhà tuyển dụng. Có các tính năng chính sau:
 - Đăng ký và đăng nhập cho ứng viên và nhà tuyển dụng.
 - Tìm kiếm việc làm dựa trên mức lương, địa chỉ.
@@ -18,10 +18,30 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 - Công cụ tạo CV thu hút, nổi bật.
 - Trợ lý AI thông minh giúp bạn lựa chọn nội dung.
 
-## Cài đặt
-### Hướng dẫn cài đặt và chạy project Laravel sau khi clone từ GitHub
-0. <b>Lưu ý:</b> tôi đã deploy sẵn trang web nên để tiết kiệm thời gian bạn có thể bỏ qua bước cài đặt.
-1. Cài Xampp
+## 💻 Công Nghệ Sử Dụng actions
+- **Backend**
+  - Laravel Framework
+  - PHP > 8.2+
+  - MySQL Database
+
+- **Frontend**
+  - HTML5, CSS3, JavaScript
+  - Bootstrap
+  - jQuery
+  - AJAX
+  - Thiết kế responsive
+
+- **Bảo Mật**
+  - Xác thực người dùng Mailpit
+  - Mã hóa dữ liệu
+  - Bảo vệ XSS
+  - Bảo vệ CSRF
+  
+ **Mở rộng thêm trong tương lai**
+  - Xác thực thanh toán gói Premium (Nhà tuyển dụng)
+
+## 🎨 Cài đặt
+1. ** Cài Xampp **
 2. Cài Composer
 3. Cài một IDE như PhpStorm hoặc VSCode
 
@@ -59,13 +79,7 @@ Chạy server development
 Như vậy là đã sẵn sàng để chạy project Laravel sau khi clone từ GitHub.
 
 ## Dữ Liệu Mẫu Và Các Phần Khác
-
-### Bạn có thể tự tạo tài khoản đăng bài với dữ liệu của bạn nếu không có thể dùng dữ liệu dưới đây.
-
 Để import dữ liệu mẫu, bạn có thể sử dụng file SQL sau: [Link tới file SQL](laravel.sql)
 
-Tài khoản:
-- 0306221090@caothang.edu.vn (Minh Tú)|tuhm4910
-- 0306221013@caothang.edu.vn (Tiến Đạt)|tiendat0306
 
 
