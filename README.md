@@ -53,33 +53,30 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
     composer dumpautoload -o
    ```
 6. **Sao chép tệp .env**
-
+   ```bash
     cp .env.example .env
-    
+    ```
 9. **Tạo key cho ứng dụng**
-
+    ```bash
     php artisan key:generate
-    
-- Chỉnh sửa các thông số cấu hình trong tập tin .env cho phù hợp môi trường (APP_, DB_, Mật khẩu DB) ví dụ [Link tới file .env mẫu](File_env_cua_toi)
-
+    ```
 9. **Xóa và tạo lại cache**
-
+    ```bash
     php artisan config:clear
     php artisan config:cache
-    
+    ```
 10. **Tạo symbolic link giữa storage và public**
-
+    ```bash
     php artisan storage:link
-
+    ```
 11. **Chạy Miragte tạo DB**
-
+    ```bash
     php artisan migrate
 
 12. **Chạy server development**
-
+    ```bash
     php artisan serve
-    
-- Như vậy là đã sẵn sàng để chạy project Laravel sau khi clone từ GitHub.
+    ```
 
 ## Dữ Liệu Mẫu Và Các Phần Khác
 Để import dữ liệu mẫu, bạn có thể sử dụng file SQL sau: [Link tới file SQL](laravel.sql)
