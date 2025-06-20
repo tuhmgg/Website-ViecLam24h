@@ -10,7 +10,7 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 
 body {
     -webkit-text-size-adjust: none;
-    background-color: #720000;
+    background-color: #8b5cf6;
     color: #0c3149;
     height: 100%;
     line-height: 1.4;

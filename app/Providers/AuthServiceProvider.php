@@ -24,8 +24,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
-                ->subject('Tim - Xác Minh Email')
-                ->line('Vui lòng nhấp vào nút bên dưới để tiếp tục với tài khoản Tim của bạn.')
+                ->subject('Vieclam24h - Xác Minh Email')
+                ->line('Vui lòng nhấp vào nút bên dưới để tiếp tục với tài khoản Vieclam24h của bạn.')
                 ->action('Xác Minh Email', $url)
                 ->line('Nếu bạn không tạo tài khoản, bạn có thể bỏ qua email này.');
         });
