@@ -78,7 +78,7 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
     php artisan serve
     ```
 
-## Dữ Liệu Mẫu Và Các Phần Khác
+## 🚀 Dữ Liệu Mẫu Và Các Phần Khác
 Để import dữ liệu mẫu, bạn có thể sử dụng file SQL sau: [Link tới file SQL](laravel.sql)
 
 
