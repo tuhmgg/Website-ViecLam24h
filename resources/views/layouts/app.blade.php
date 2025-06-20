@@ -204,10 +204,28 @@
                     <li class="nav-item mx-lg-2 my-2 my-lg-0">
                         <div class="dropdown">
                             @if(auth()->user()->profile_pic)
-                            <img type="button" data-bs-toggle="dropdown" aria-expanded="false" class="rounded-circle border border-light" src="{{asset('storage/'.auth()->user()->profile_pic)}}" height="45" alt="">
-                            @else
-                                <img type="button" data-bs-toggle="dropdown" aria-expanded="false" class="rounded-circle border border-light" src="{{asset('img/undraw_profile.svg')}}" height="45" alt="">
-                            @endif
+                            <img 
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                class="rounded-circle border border-light"
+                                src="{{ asset('storage/' . auth()->user()->profile_pic) }}"
+                                height="45"
+                                width="45"
+                                style="object-fit: cover;"
+                                alt="Avatar">
+                        @else
+                            <img 
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                class="rounded-circle border border-light"
+                                src="{{ asset('img/undraw_profile.svg') }}"
+                                height="45"
+                                width="45"
+                                style="object-fit: cover;"
+                                alt="Default Avatar">
+                        @endif
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-4 grow">
                                 <a class="dropdown-item" href="{{route('user.profile')}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c1a29b" class="bi bi-person-fill mx-2" viewBox="0 0 16 16">

@@ -45,7 +45,7 @@ class UserController extends Controller
         ]);
 
         Auth::login($user);
-
+// Gửi email xác minh
         $user->sendEmailVerificationNotification();
 
         return redirect()->route('verification.notice')->with('success', 'Vui lòng xác minh email để đăng nhập');
