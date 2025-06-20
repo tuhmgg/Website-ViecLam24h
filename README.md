@@ -52,11 +52,10 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
     composer dumpautoload -o
    
 7. **Sao chép tệp .env**
-Sao chép từ tập tin mẫu .env.example sang .env
 
     cp .env.example .env
     
-8. **Tạo key cho ứng dụng**
+9. **Tạo key cho ứng dụng**
 
     php artisan key:generate
     
