@@ -7,25 +7,25 @@
     {{-- Hero Section --}}
     <section class="hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #87CEEB 0%, #1E90FF 100%); min-height: 70vh;">
         {{-- Geometric Shapes --}}
-        <div class="position-absolute top-0 end-0" style="width: 200px; height: 200px; background: #4169E1; border-radius: 50%; opacity: 0.8; transform: translate(50px, -50px);"></div>
-        <div class="position-absolute bottom-0 start-0" style="width: 150px; height: 150px; background: #00BFFF; transform: rotate(45deg) translate(-50px, 50px);"></div>
-        <div class="position-absolute" style="top: 30%; right: 20%; width: 250px; height: 250px; background: #ffffff; border-radius: 50%; opacity: 0.2;"></div>
+        <div class="position-absolute top-0 end-0 hero-shape" style="width: 200px; height: 200px; background: #4169E1; border-radius: 50%; opacity: 0.8; transform: translate(50px, -50px);"></div>
+        <div class="position-absolute bottom-0 start-0 hero-shape" style="width: 150px; height: 150px; background: #00BFFF; transform: rotate(45deg) translate(-50px, 50px);"></div>
+        <div class="position-absolute hero-shape" style="top: 30%; right: 20%; width: 250px; height: 250px; background: #ffffff; border-radius: 50%; opacity: 0.2;"></div>
         
         <div class="container position-relative" style="z-index: 10;">
             <div class="row align-items-center min-vh-70">
                 <div class="col-lg-6 py-5 pe-lg-4">
-                    <h1 class="display-3 fw-bold mb-4" style="font-family: 'Inter', sans-serif; color: #1f2937; line-height: 1.1; text-shadow: 0 2px 4px rgba(255,255,255,0.3);">
+                    <h1 class="display-3 fw-bold mb-4 hero-title" style="font-family: 'Inter', sans-serif; color: #1f2937; line-height: 1.1; text-shadow: 0 2px 4px rgba(255,255,255,0.3);">
                         Kết Nối Với Sự Thành Công
                     </h1>
-                    <p class="lead mb-4" style="color: #374151; font-size: 1.25rem; line-height: 1.6; text-shadow: 0 1px 2px rgba(255,255,255,0.2);">
-                        Tự do chọn lựa công việc, khám phá sứ mệnh nghề nghiệp và tiến gần hơn đến mục tiêu sự nghiệp lớn lao của bạn.
+                    <p class="lead mb-4 hero-desc" style="color: #374151; font-size: 1.25rem; line-height: 1.6; text-shadow: 0 1px 2px rgba(255,255,255,0.2);">
+                        Tự do chọn lựa công việc, khám phá sức mạnh nghề nghiệp và tiến gần hơn đến mục tiêu sự nghiệp lớn lao của bạn.
                     </p>
-                    <a href="{{route('register')}}" class="btn btn-gradient btn-lg px-5 py-3 fw-bold" style="border-radius: 50px; font-size: 1.125rem; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); border: none; color: white; transition: all 0.3s ease;">
+                    <a href="{{route('register')}}" class="btn btn-gradient btn-lg px-5 py-3 fw-bold hero-btn" style="border-radius: 50px; font-size: 1.125rem; background: linear-gradient(135deg, #0ea5e9, #8b5cf6); border: none; color: white; transition: all 0.3s ease;">
                         Đăng Ký
                     </a>
                 </div>
                 <div class="col-lg-6 text-center ps-lg-2">
-                    <img class="img-fluid" src="{{asset('image/banner-man2.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
+                    <img class="img-fluid hero-img" src="{{asset('image/banner-man2.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
                 </div>
             </div>
         </div>
