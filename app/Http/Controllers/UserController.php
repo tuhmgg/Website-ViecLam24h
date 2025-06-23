@@ -86,7 +86,9 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            if (auth()->user()->user_type == 'employer')
+            if (auth()->user()->user_type == 'admin')
+                return redirect()->intended('admin/dashboard');
+            else if (auth()->user()->user_type == 'employer')
                 return redirect()->intended('dashboard');
             else if (auth()->user()->user_type == 'employee')
                 return redirect()->intended('');
@@ -166,9 +168,25 @@ class UserController extends Controller
     }
 
 //    hàm xem cv đã tải lên
-    public function viewCv()
+    public function viewCv(Request $request)
     {
-        $path = Storage::path('storage/'.auth()->user()->resume);
+        // Nếu admin xem CV của người khác
+        if (auth()->check() && auth()->user()->user_type === 'admin' && $request->has('user_id')) {
+            $user = User::findOrFail($request->user_id);
+        } else {
+            // Người dùng tự xem CV của mình
+            $user = auth()->user();
+        }
+
+        if (!$user || !$user->resume) {
+            abort(404, 'Không tìm thấy CV.');
+        }
+
+        $path = Storage::path('public/'.$user->resume);
+
+        if (!Storage::exists('public/'.$user->resume)) {
+            abort(404, 'File CV không tồn tại.');
+        }
 
         return response()->file($path);
     }

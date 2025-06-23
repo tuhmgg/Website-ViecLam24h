@@ -17,13 +17,13 @@ class JoblistingController extends Controller
     {
 //        return Listing::with('profile')->get();
 //        lấy ra 8 job mới nhất phân trang
-        $jobs = Listing::with('profile')->whereHas('profile')->latest()->paginate(8);
+        $jobs = Listing::with('profile')->whereHas('profile')->approved()->latest()->paginate(8);
         $jobType = "";
         $salaryRange = "";
         $search = "";
         $address = "";
 // đếm số lượng job
-        $count = Listing::count();
+        $count = Listing::approved()->count();
 
 //        dếm số lượng người đăng bài
         $countCompany = User::where('user_type', 'employer')->count();
@@ -36,6 +36,11 @@ class JoblistingController extends Controller
 //    hàm show() hiển thị job.show và sẽ lấy shortlisted trong pivot table
     public function show(Listing $listing)
     {
+        // Kiểm tra xem tin có được duyệt không
+        if ($listing->status !== 'approved') {
+            abort(404, 'Tin tuyển dụng không tồn tại hoặc chưa được duyệt.');
+        }
+        
         $listing->load('users');
 //        lấy user người đăng bài
         $user = User::where('id', $listing->user_id)->first();
@@ -51,7 +56,7 @@ class JoblistingController extends Controller
         $salaryRange = $request->salary_range;
         $search = $request->search;
         $address = $request->address;
-        $jobs = Listing::where(function($q) use ($search, $address, $jobType, $salaryRange){
+        $jobs = Listing::approved()->where(function($q) use ($search, $address, $jobType, $salaryRange){
             if($search){
                 $q->where('title', 'like', "%{$search}%");
             }
@@ -81,7 +86,7 @@ class JoblistingController extends Controller
             }
         })->latest()->paginate(8);
         // đếm số lượng job
-        $count = Listing::count();
+        $count = Listing::approved()->count();
         // đếm số lượng người đăng bài
         $countCompany = User::where('user_type','employer')->count();        
         // đếm số lượng employee trong model user

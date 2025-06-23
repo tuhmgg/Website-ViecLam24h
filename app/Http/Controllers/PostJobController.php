@@ -27,7 +27,7 @@ class PostJobController extends Controller
 
     public function index()
     {
-        $jobs = Listing::where('user_id', auth()->user()->id)->get();
+        $jobs = Listing::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
         return view('job.index', compact('jobs'));
     }
     public function store(JobPostFormRequest $request){

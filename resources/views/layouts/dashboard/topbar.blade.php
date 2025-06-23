@@ -74,6 +74,35 @@
                     </li>
                 @endif
 
+                @if(auth()->user()->user_type == 'admin')
+                    <!-- Admin Menu -->
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            <span>Quản Trị</span>
+                        </a>
+                        <div class="dropdown-menu shadow" aria-labelledby="adminDropdown">
+                            <a class="dropdown-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{route('admin.dashboard')}}">
+                                <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Dashboard Admin
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.pending-jobs') ? 'active' : '' }}" href="{{route('admin.pending-jobs')}}">
+                                <i class="fas fa-clock fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Tin chờ duyệt
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.all-jobs') ? 'active' : '' }}" href="{{route('admin.all-jobs')}}">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Tất cả tin tuyển dụng
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.users') ? 'active' : '' }}" href="{{route('admin.users')}}">
+                                <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Quản lý người dùng
+                            </a>
+                        </div>
+                    </li>
+                @endif
+
                 <!-- AI Assistant -->
                 <li class="nav-item {{ request()->routeIs('suggest.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('suggest.index')}}">
