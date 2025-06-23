@@ -21,8 +21,8 @@
             <!-- Main Navigation -->
             <ul class="navbar-nav mr-auto">
                 <!-- Dashboard -->
-                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('dashboard')}}">
+                <li class="nav-item {{ (auth()->user()->user_type == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}">
                         <i class="fas fa-fw fa-tachometer-alt mr-1"></i>
                         <span>Bảng Điều Khiển</span>
                     </a>
@@ -83,10 +83,6 @@
                             <span>Quản Trị</span>
                         </a>
                         <div class="dropdown-menu shadow" aria-labelledby="adminDropdown">
-                            <a class="dropdown-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{route('admin.dashboard')}}">
-                                <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Dashboard Admin
-                            </a>
                             <a class="dropdown-item {{ request()->routeIs('admin.pending-jobs') ? 'active' : '' }}" href="{{route('admin.pending-jobs')}}">
                                 <i class="fas fa-clock fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Tin chờ duyệt
