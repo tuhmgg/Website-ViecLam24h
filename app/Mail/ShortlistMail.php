@@ -37,7 +37,7 @@ class ShortlistMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Tim-vn.tech - Có một nhà tuyển dụng đã chấp nhận ứng tuyển của bạn',
+            subject: 'ViệcLàm24h - Có một nhà tuyển dụng đã chấp nhận ứng tuyển của bạn',
         );
     }
 

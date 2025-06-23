@@ -30,7 +30,7 @@ class PurchaseMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Thanh toán thành công - Tim-vn.tech',
+            subject: 'Thanh toán thành công - ViệtLàm24h',
         );
     }
 
