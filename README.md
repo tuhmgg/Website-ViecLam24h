@@ -18,6 +18,7 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 - Lưu trữ hồ sơ và thông tin cá nhân của người dùng.
 - Công cụ tạo CV thu hút, nổi bật.
 - Trợ lý AI thông minh giúp bạn lựa chọn nội dung.
+- Duyệt tin tuyển dụng, quản lý người dùng, thống kê.
 
 ## 💻 Công Nghệ Sử Dụng actions
 - **Backend**
