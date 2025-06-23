@@ -81,5 +81,10 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 ## 🚀 Dữ Liệu Mẫu Và Các Phần Khác
 Để import dữ liệu mẫu, bạn có thể sử dụng file SQL sau: [Link tới file SQL](laravel.sql)
 
+Các Tài khoản có sẵn trên web online:
+- admin@vieclam24h.com|admin123 (Quản trị toàn bộ hệ thống).
+- employer@vieclam24h.com|employer123 (Đăng tin tuyển dụng, quản lý ứng viên).
+- employee@vieclam24h.com|employee123 (Tìm việc, nộp hồ sơ).
+
 
 
