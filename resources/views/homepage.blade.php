@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-lg-6 text-center ps-lg-2">
-                    <img class="img-fluid hero-img" src="{{asset('image/banner-man2.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
+                    <img class="img-fluid hero-img zoom-img" src="{{asset('image/banner-man2.png')}}" alt="Hero Banner" style="max-height: 500px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));">
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
                                 <div class="d-flex align-items-center flex-grow-1">
                                     <div class="position-relative me-3">
                                         <img src="{{asset('storage/'.$job->profile->profile_pic)}}" 
-                                             class="rounded-3 border" 
+                                             class="rounded-3 border zoom-img" 
                                              style="width: 50px; height: 50px; object-fit: cover;" 
                                              alt="Company Logo">
                                         @if($job->profile->plan == "yearly")
