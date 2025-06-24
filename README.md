@@ -34,14 +34,9 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 - **Bảo Mật**
   - Xác thực người dùng Mailpit
   - Mã hóa dữ liệu
-  - Bảo vệ XSS
-  - Bảo vệ CSRF
-  
- **Mở rộng thêm trong tương lai**             
-<<<<<<< Feature/Tu/AdminLayout-v2
-  - Xác thực thanh toán gói Premium (Nhà tuyển dụng)
-  - Trợ lý AI thông minh giúp bạn lựa chọn nộ
+  - Bả vệ XSS
 ## 🎨 Cài đặt
+
 1. **Cài Xampp**
    
 3. **Cài Composer**
