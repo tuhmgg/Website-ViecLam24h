@@ -37,9 +37,6 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
   - Bảo vệ XSS
   - Bảo vệ CSRF
   
- **Mở rộng thêm trong tương lai**
-
-
 ## 🎨 Cài đặt
 1. **Cài Xampp**
    
