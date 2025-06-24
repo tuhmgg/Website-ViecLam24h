@@ -11,12 +11,12 @@ Website Việc Làm 24h là một website tìm kiếm việc làm nhanh chóng v
 
 ## 🎯 Mô tả
 Website được xây dựng với mục tiêu cung cấp một nền tảng cho người tìm việc và nhà tuyển dụng. Có các tính năng chính sau:
-- Đăng ký và đăng nhập cho ứng viên và nhà tuyển dụng.
+- Đăng ký và đăng nhập cho ứng viên , nhà tuyển dụng.
+- Đăng nhập cho Admin có sẵn.
 - Tìm kiếm việc làm dựa trên mức lương, địa chỉ.
 - Đăng tin tuyển dụng cho nhà tuyển dụng.
 - Lưu trữ hồ sơ và thông tin cá nhân của người dùng.
 - Công cụ tạo CV thu hút, nổi bật.
-- Duyệt tin tuyển dụng, quản lý người dùng, thống kê.
 
 ## 💻 Công Nghệ Sử Dụng actions
 - **Backend**
@@ -85,6 +85,3 @@ Các Tài khoản có sẵn trên web online:
 - admin@vieclam24h.com|admin123 (Quản trị toàn bộ hệ thống).
 - employer@vieclam24h.com|employer123 (Đăng tin tuyển dụng, quản lý ứng viên).
 - employee@vieclam24h.com|employee123 (Tìm việc, nộp hồ sơ).
-
-
-

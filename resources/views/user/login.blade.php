@@ -16,13 +16,13 @@
                 <div class="card shadow border-0" style="border-radius: 55px">
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
-                            <form action="" method="post">@csrf
+                            <form action="{{ route('login.post') }}" method="post">@csrf
                                 <div class="col-11 m-3 text-center">
                                     <h2 class="fw-bold">Đăng Nhập</h2>
                                     <h2 class="fw-bold">Việc Làm 24h</h2>
                                 </div>
                                 <div class="col-11 m-3">
-                                    <input type="email" name="email" id="email" class="form-control shadow-none" placeholder="Email" style="border-radius: 30px" value="">
+                                    <input type="email" name="email" id="email" class="form-control shadow-none" placeholder="Email" style="border-radius: 30px" value="{{ old('email') }}">
                                     @if($errors->has('email'))
                                         <p class="text-danger">Bạn chưa nhập email</p>
                                     @endif

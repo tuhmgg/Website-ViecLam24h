@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\isPremiumUser;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -89,7 +90,7 @@ Route::get('job/{id}/delete', [PostJobController::class, 'destroy'])->name('job.
 
 Route::get('user/cv', [UserController::class, 'cv'])->name('user.cv');
 Route::post('user/cv', [UserController::class, 'updateCv'])->name('user.cv.update');
-Route::get('user/cv/view', [UserController::class, 'viewCv'])->name('user.cv.view');
+Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('user.cv.view');
 
 Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('applicants/{listing:slug}', [ApplicantController::class, 'view'])->name('applicants.view');
@@ -115,3 +116,20 @@ Route::post('/user/mail', [DashboardController::class, 'mail'])->name('user.mail
 
 //route tới xem preview pdf
 Route::get('/user/cv/preview', [UserController::class, 'previewPDF'])->name('preview.pdf');
+
+// Admin routes
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/pending-jobs', [AdminController::class, 'pendingJobs'])->name('pending-jobs');
+    Route::get('/all-jobs', [AdminController::class, 'allJobs'])->name('all-jobs');
+    Route::get('/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/job/{id}', [AdminController::class, 'viewJob'])->name('view-job');
+    Route::post('/job/{id}/approve', [AdminController::class, 'approveJob'])->name('approve-job');
+    Route::post('/job/{id}/reject', [AdminController::class, 'rejectJob'])->name('reject-job');
+    Route::post('/job/{id}/reset', [AdminController::class, 'resetJob'])->name('reset-job');
+
+    // Application management routes
+    Route::get('/applications/pending', [AdminController::class, 'pendingApplications'])->name('applications.pending');
+    Route::post('/application/{listing_id}/{user_id}/approve', [AdminController::class, 'approveApplication'])->name('application.approve');
+    Route::post('/application/{listing_id}/{user_id}/reject', [AdminController::class, 'rejectApplication'])->name('application.reject');
+});

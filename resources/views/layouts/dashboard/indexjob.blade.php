@@ -2,6 +2,9 @@
     @if(Session::has('success'))
         <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
+    @if(Session::has('message'))
+        <div class="alert alert-success">{{Session::get('message')}}</div>
+    @endif
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Danh sách bài đăng</h1>
 {{--    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.--}}
@@ -22,6 +25,7 @@
                         <th>STT</th>
                         <th>Tiêu đề</th>
                         <th>Ngày đăng</th>
+                        <th>Trạng thái</th>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -31,6 +35,7 @@
                         <th>STT</th>
                         <th>Tiêu đề</th>
                         <th>Ngày đăng</th>
+                        <th>Trạng thái</th>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
@@ -42,6 +47,17 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$job->title}}</td>
                             <td>{{$job->created_at->format('d-m-Y')}}</td>
+                            <td>
+                                @if($job->status == 'pending')
+                                    <span class="badge badge-warning">Chờ duyệt</span>
+                                @elseif($job->status == 'approved')
+                                    <span class="badge badge-success">Đã duyệt</span>
+                                @elseif($job->status == 'rejected')
+                                    <span class="badge badge-danger">Bị từ chối</span>
+                                @else
+                                    <span class="badge badge-secondary">Không xác định</span>
+                                @endif
+                            </td>
                             <td><a class="btn btn-info container-fluid" href="{{route('job.edit',$job->id)}}">Sửa Bài</a></td>
                             <td><a class="btn btn-outline-primary container-fluid" href="{{route('job.delete',[$job->id])}}" data-bs-toggle="modal" data-bs-target="#delpost{{$job->id}}" >Xóa Bài</a></td>
 {{--                        modal--}}

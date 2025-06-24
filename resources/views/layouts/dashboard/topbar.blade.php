@@ -21,8 +21,8 @@
             <!-- Main Navigation -->
             <ul class="navbar-nav mr-auto">
                 <!-- Dashboard -->
-                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('dashboard')}}">
+                <li class="nav-item {{ (auth()->user()->user_type == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}">
                         <i class="fas fa-fw fa-tachometer-alt mr-1"></i>
                         <span>Bảng Điều Khiển</span>
                     </a>
@@ -69,6 +69,31 @@
                             <a class="dropdown-item {{ request()->routeIs('create.cv') ? 'active' : '' }}" href="{{route('create.cv')}}">
                                 <i class="fas fa-palette fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Trình Tạo CV
+                            </a>
+                        </div>
+                    </li>
+                @endif
+
+                @if(auth()->user()->user_type == 'admin')
+                    <!-- Admin Menu -->
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            <span>Quản Trị</span>
+                        </a>
+                        <div class="dropdown-menu shadow" aria-labelledby="adminDropdown">
+                            <a class="dropdown-item {{ request()->routeIs('admin.pending-jobs') ? 'active' : '' }}" href="{{route('admin.pending-jobs')}}">
+                                <i class="fas fa-clock fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Tin chờ duyệt
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.all-jobs') ? 'active' : '' }}" href="{{route('admin.all-jobs')}}">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Tất cả tin tuyển dụng
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.users') ? 'active' : '' }}" href="{{route('admin.users')}}">
+                                <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Quản lý người dùng
                             </a>
                         </div>
                     </li>
