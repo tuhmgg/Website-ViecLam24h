@@ -38,8 +38,7 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
   - Bảo vệ CSRF
   
  **Mở rộng thêm trong tương lai**
-  - Xác thực thanh toán gói Premium (Nhà tuyển dụng)
-  - Trợ lý AI thông minh giúp bạn lựa chọn nội dung.
+
 
 ## 🎨 Cài đặt
 1. **Cài Xampp**
