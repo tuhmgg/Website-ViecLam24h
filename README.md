@@ -17,8 +17,6 @@ Website được xây dựng với mục tiêu cung cấp một nền tảng cho
 - Đăng tin tuyển dụng cho nhà tuyển dụng.
 - Lưu trữ hồ sơ và thông tin cá nhân của người dùng.
 - Công cụ tạo CV thu hút, nổi bật.
-- Trợ lý AI thông minh giúp bạn lựa chọn nội dung.
-git reset --hard HEAD~1
 
 ## 💻 Công Nghệ Sử Dụng actions
 - **Backend**
@@ -41,6 +39,7 @@ git reset --hard HEAD~1
   
  **Mở rộng thêm trong tương lai**
   - Xác thực thanh toán gói Premium (Nhà tuyển dụng)
+  - Trợ lý AI thông minh giúp bạn lựa chọn nội dung.
 
 ## 🎨 Cài đặt
 1. **Cài Xampp**
