@@ -24,12 +24,13 @@ class Listing extends Model
         'status'
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'listing_user', 'listing_id', 'user_id')
-            ->withPivot(['shortlisted', 'application_status'])
-            ->withTimestamps();
+	public function users()
+	{
+	    return $this->belongsToMany(User::class, 'listing_user', 'listing_id', 'user_id')
+        ->withPivot(['shortlisted', 'application_status'])
+	        ->withTimestamps();
     }
+
 
     public function profile(){
         return $this->belongsTo(User::class, 'user_id', 'id');

@@ -34,18 +34,20 @@ class JoblistingController extends Controller
     }
 
 //    hàm show() hiển thị job.show và sẽ lấy shortlisted trong pivot table
-    public function show(Listing $listing)
-    {
-        // Kiểm tra xem tin có được duyệt không
-        if ($listing->status !== 'approved') {
-            abort(404, 'Tin tuyển dụng không tồn tại hoặc chưa được duyệt.');
-        }
-        
-        $listing->load('users');
-//        lấy user người đăng bài
-        $user = User::where('id', $listing->user_id)->first();
-        return view('job.show', compact('listing', 'user'));
+   public function show(Listing $listing)
+{
+    if ($listing->status !== 'approved') {
+        abort(404);
     }
+
+    $listing->load('users'); // nạp user ứng tuyển từ bảng pivot
+
+    $user = User::find($listing->user_id);
+    $applicants = $listing->users; // lấy danh sách ứng viên đã ứng tuyển
+
+    return view('job.show', compact('listing', 'user', 'applicants'));
+}
+
 
 // hàm xử lý tìm kiếm
     public function search(Request $request)
