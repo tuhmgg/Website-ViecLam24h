@@ -61,5 +61,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
         'cv_template' => 'array',
     ];
+    public function favorites()
+    {
+        return $this->belongsToMany(Listing::class, 'favorites')->withTimestamps();
+    }
+
+    public function hasFavorited($listingId): bool
+    {
+        return $this->favorites()->where('listing_id', $listingId)->exists();
+    }
 
 }
