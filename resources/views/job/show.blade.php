@@ -75,42 +75,6 @@
             @endif
         </h5>
 
-        {{-- Applicants Statistics Section --}}
-        @if(isset($applicants))
-            <div class="row mb-4 mt-4">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="mb-0">
-                                <i class="fas fa-users mr-2"></i>
-                                Thống Kê Ứng Viên
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-primary">{{$applicants->count()}}</h3>
-                                    <p class="text-muted">Tổng Ứng Viên</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-success">{{$applicants->where('pivot.created_at', '>=', now()->subDays(7))->count()}}</h3>
-                                    <p class="text-muted">Ứng Viên Tuần Này</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-warning">{{$applicants->where('pivot.shortlisted', 1)->count()}}</h3>
-                                    <p class="text-muted">Đã Shortlist</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-info">{{$applicants->where('user_type', 'employee')->count()}}</h3>
-                                    <p class="text-muted">Nhân Viên</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-
         {{-- Contact email --}}
         @if(auth()->user())
             {{-- Check if $listing->users already has pivot table --}}
