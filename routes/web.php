@@ -96,6 +96,7 @@ Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('
 
 Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('applicants/{listing:slug}', [ApplicantController::class, 'view'])->name('applicants.view');
+Route::delete('/applicants/{listingId}/{userId}', [ApplicantController::class, 'removeApplicant'])->name('applicants.remove');
 Route::post('shortlist/{listingId}/{userId}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
 
 Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit');
