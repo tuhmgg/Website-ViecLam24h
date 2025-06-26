@@ -52,7 +52,14 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            @include('layouts.dashboard.applicantsview')
+            <div class="container-fluid py-4">
+                <div class="d-sm-flex align-items-center justify-content-end mb-4">
+                    <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+                        <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                    </a>
+                </div>
+                @include('layouts.dashboard.applicantsview')
+            </div>
             <!-- /.container-fluid -->
 
         </div>

@@ -47,15 +47,35 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            @include('layouts.dashboard.indexjob')
-            <!-- /.container-fluid -->
+            <div class="container-fluid py-4">
+                @if(session('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Quản lý tin tuyển dụng</h1>
+                    <div class="d-flex justify-content-end mb-4">
+                        <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                        </a>
+                    </div>
+                </div>
+                
+                @include('layouts.dashboard.indexjob')
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            @include('layouts.dashboard.footer')
+            <!-- End of Footer -->
 
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        @include('layouts.dashboard.footer')
-        <!-- End of Footer -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Content Wrapper -->

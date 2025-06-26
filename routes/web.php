@@ -90,6 +90,8 @@ Route::get('job/{id}/delete', [PostJobController::class, 'destroy'])->name('job.
 
 Route::get('user/cv', [UserController::class, 'cv'])->name('user.cv');
 Route::post('user/cv', [UserController::class, 'updateCv'])->name('user.cv.update');
+Route::delete('user/cv', [UserController::class, 'deleteCv'])->name('user.cv.delete');
+Route::post('user/cv/upload-from-builder', [UserController::class, 'uploadCvFromBuilder'])->name('user.cv.upload-from-builder');
 Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('user.cv.view');
 
 Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
@@ -116,6 +118,10 @@ Route::post('/user/mail', [DashboardController::class, 'mail'])->name('user.mail
 
 //route tới xem preview pdf
 Route::get('/user/cv/preview', [UserController::class, 'previewPDF'])->name('preview.pdf');
+Route::post('/user/cv/preview', [UserController::class, 'previewPDF'])->name('preview.pdf.post');
+
+//route tới lưu mẫu CV
+Route::post('/user/cv/save-template', [UserController::class, 'saveCvTemplate'])->name('save.cv.template')->middleware(['auth', 'verified']);
 
 // Admin routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
@@ -133,3 +139,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('/application/{listing_id}/{user_id}/approve', [AdminController::class, 'approveApplication'])->name('application.approve');
     Route::post('/application/{listing_id}/{user_id}/reject', [AdminController::class, 'rejectApplication'])->name('application.reject');
 });
+
+Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class, 'downloadCvPdfFromBuilder'])->name('user.cv.downloadPdf');

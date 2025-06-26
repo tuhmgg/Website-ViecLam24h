@@ -45,9 +45,10 @@
             <!-- Topbar -->
             @include('layouts.dashboard.topbar')
             <!-- End of Topbar -->
-
-            <!-- Begin Page Content -->
-            @include('layouts.dashboard.editjob')
+                
+                
+                @include('layouts.dashboard.editjob')
+            </div>
             <!-- /.container-fluid -->
 
         </div>

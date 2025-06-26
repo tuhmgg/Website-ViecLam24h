@@ -177,10 +177,17 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container py-4">
-                <div class="ai-header d-flex align-items-center">
+            <div class="container-fluid py-4">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Trợ Lý AI</h1>
+                    <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+                        <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                    </a>
+                </div>
+                
+                <div class="ai-header d-flex align-items-center mb-4">
                     <i class="fas fa-robot text-success me-3" style="font-size: 2rem;"></i>
-                    <h1 class="mb-0">Trợ Lý AI</h1>
+                    <h2 class="mb-0">Hướng dẫn sử dụng AI</h2>
                 </div>
                 
                 @if(auth()->user()->user_type == 'employee')

@@ -316,14 +316,14 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text font-weight-bold text-danger text-uppercase mb-1">Các mẫu CV độc đáo của TIM
+                                <div class="text font-weight-bold text-danger text-uppercase mb-1">Các mẫu CV độc đáo của ViecLam24h
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-3">
-                                        <embed class="shadow-sm" style="border: solid 2px #ffffff" src="{{asset('storage/cv1.pdf')}}" type="application/pdf" width="100%" height="260px" /><a class="btn btn-primary container-fluid" href="{{asset('storage/cv1.pdf')}}" target="_blank">Xem</a>
+                                        <embed class="shadow-sm" style="border: solid 2px #ffffff" src="{{asset('storage/cv1.pdf')}}" type="application/pdf" width="100%" height="260px" /><a class="btn btn-primary container-fluid" href="{{asset('image/cv1.png')}}" target="_blank">Xem</a>
                                     </div>
                                     <div class="col-3">
-                                        <embed class="shadow-sm" style="border: solid 2px #ffffff" src="{{asset('storage/cv1.pdf')}}" type="application/pdf" width="100%" height="260px" /><a class="btn btn-primary container-fluid" href="{{asset('storage/cv1.pdf')}}" target="_blank">Xem</a>
+                                        <embed class="shadow-sm" style="border: solid 2px #ffffff" src="{{asset('storage/cv2.pdf')}}" type="application/pdf" width="100%" height="260px" /><a class="btn btn-primary container-fluid" href="{{asset('image/cv1.png')}}" target="_blank">Xem</a>
                                     </div>
                                     <div class="col-3">
                                         <embed class="shadow-sm" style="border: solid 2px #ffffff" src="{{asset('storage/cv1.pdf')}}" type="application/pdf" width="100%" height="260px" /><a class="btn btn-primary container-fluid" href="{{asset('storage/cv1.pdf')}}" target="_blank">Xem</a>

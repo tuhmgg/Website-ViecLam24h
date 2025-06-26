@@ -52,7 +52,16 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            @include('layouts.dashboard.contentprofile')
+            <div class="container-fluid py-4">
+                @if(session('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                
+                @include('layouts.dashboard.contentprofile')
+            </div>
             <!-- /.container-fluid -->
 
         </div>

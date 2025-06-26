@@ -1,0 +1,313 @@
+/* CV Builder Styles */
+
+/* Sidebar styles */
+.sidebar-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 20px 0;
+}
+
+.sidebar-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.sidebar-item i {
+    margin-right: 10px;
+    width: 16px;
+    color: #0d6efd;
+}
+
+.sidebar-item span {
+    flex: 1;
+    word-break: break-word;
+}
+
+/* Save button styles */
+.btn-save-cv {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-save-cv:hover {
+    background: linear-gradient(45deg, #218838, #1ea085);
+    color: white;
+}
+
+/* Upload button styles */
+.btn-upload-cv {
+    background: linear-gradient(45deg, #ffc107, #fd7e14);
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-upload-cv:hover {
+    background: linear-gradient(45deg, #e0a800, #e8590c);
+    color: white;
+}
+
+/* CV Builder Container */
+.cv-builder-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cv-form-panel {
+    flex: 1 1 350px;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem;
+    min-width: 320px;
+}
+
+.cv-preview-panel {
+    flex: 2 1 600px;
+    min-width: 350px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CV Preview Styles */
+.cv-preview {
+    width: 794px;
+    min-height: 1123px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.10);
+    padding: 32px 40px;
+    font-family: 'Inter', 'Nunito', Arial, sans-serif;
+    color: #222;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+.cv-preview-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 1123px;
+    background: #f4f5f7;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.cv-sidebar-custom {
+    background: #18344a;
+    width: 250px;
+    min-height: 1123px;
+    padding: 40px 24px 40px 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.cv-main-content {
+    flex: 1;
+    background: #fff;
+    padding: 48px 48px 32px 48px;
+    min-height: 1123px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+/* CV Elements */
+.cv-avatar {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 28px;
+    background: #fff;
+    object-fit: cover;
+    display: block;
+}
+
+.cv-main-content .cv-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 0.2rem;
+    letter-spacing: 1px;
+}
+
+.cv-main-content .cv-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.cv-main-content .cv-section-title {
+    color: #18344a;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 3px;
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.cv-main-content .cv-section {
+    margin-bottom: 1.2rem;
+}
+
+.cv-main-content .cv-list li {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.cv-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 32px;
+    text-align: right;
+    font-size: 0.95rem;
+    color: #adb5bd;
+    margin-top: 20px;
+    display: block;
+}
+
+/* Color picker */
+.cv-color-picker {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.cv-builder-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .cv-preview-row {
+        flex-direction: column;
+    }
+    .cv-sidebar-custom {
+        width: 100%;
+        min-height: unset;
+        padding: 24px 12px;
+    }
+    .cv-main-content {
+        padding: 24px 12px;
+    }
+    .cv-preview {
+        width: 100% !important;
+        min-width: unset;
+        min-height: unset;
+        padding: 12px !important;
+    }
+    .cv-builder-actions {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    .cv-builder-actions .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .cv-preview {
+        padding: 4px !important;
+    }
+    .cv-main-content, .cv-sidebar-custom {
+        padding: 12px 4px !important;
+    }
+    .cv-avatar {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: #fff !important;
+    }
+    .cv-preview {
+        width: 210mm !important;
+        min-width: 210mm !important;
+        max-width: 210mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+        height: 297mm !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .cv-preview *, .cv-preview-row, .cv-sidebar-custom, .cv-main-content {
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        overflow: hidden !important;
+    }
+    .cv-preview-panel, .cv-builder-container, .cv-form-panel, .cv-builder-actions, .no-print, .btn, nav, footer, header, .sidebar, .topbar {
+        display: none !important;
+    }
+    
+    body > * { display: none !important; }
+    #cvPreviewPanelPDF { display: block !important; }
+    #cvPreviewPanelPDF {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 auto !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+}
+
+/* Word break for all CV elements */
+.cv-title, .cv-subtitle, .cv-section-title, .cv-section, .cv-list, .cv-list li, .cv-contact, .cv-footer, #previewName, #previewPosition, #previewAbout, #previewPhone, #previewEmail, #previewBirthday, #previewGender, #previewAddress {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+} 
