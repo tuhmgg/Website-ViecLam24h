@@ -80,5 +80,18 @@ class ApplicantController extends Controller
 
     }
 
+    public function removeApplicant($listingId, $userId)
+{
+    $listing = Listing::findOrFail($listingId);
+
+    if ($listing->user_id !== auth()->id()) {
+        abort(403, 'Không có quyền thực hiện hành động này.');
+    }
+
+    $listing->users()->detach($userId);
+
+    return redirect()->back()->with('message', 'Đã xóa ứng viên khỏi danh sách ứng tuyển.');
+}
+
 
 }
