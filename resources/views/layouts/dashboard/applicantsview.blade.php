@@ -58,19 +58,28 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 mt-3">{{$user->pivot->created_at->format('d/m/Y')}}</div>
                                 </div>
 
-                                <div class="col-6 mt-4 d-flex justify-content-start">
-                                    <a class="btn btn-info mb-4" href="{{asset('storage/'.$user->resume)}}" target="_blank">Xem CV</a>
-                                </div>
+                                <div class="col-12 mt-4 d-flex justify-content-between">
+                                    {{-- Nút Xem CV --}}
+                                    <a class="btn btn-info mb-0" href="{{ asset('storage/'.$user->resume) }}" target="_blank">Xem CV</a>
 
-                                <div class="col-6 mt-4 d-flex justify-content-end">
-                                    <form action="{{route('applicant.shortlist',[$listing->id,$user->id])}}" method="POST">@csrf
+                                    {{-- Nút Thêm / Đã thêm --}}
+                                    <form action="{{ route('applicant.shortlist', [$listing->id, $user->id]) }}" method="POST">
+                                        @csrf
                                         @if($user->pivot->shortlisted == '1')
-                                            <button class="btn btn-dark mb-4" disabled >Đã thêm</button>
+                                            <button class="btn btn-dark mb-0" disabled>Đã thêm</button>
                                         @else
-                                            <button type="submit" class="btn btn-success mb-4" data-toggle="modal" data-target=".shortlist">thêm</button>
+                                            <button type="submit" class="btn btn-success mb-0">Thêm</button>
                                         @endif
                                     </form>
+                                    
+                                    {{-- Nút Xóa (bỏ btn-sm để to bằng các nút khác) --}}
+                                    <form action="{{ route('applicants.remove', [$listing->id, $user->id]) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa ứng viên này?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger mb-0">Xóa</button>
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
