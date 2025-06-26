@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_pic',
         'user_type',
         'resume',
+        'cv_template',
         'user_trial',
         'billing_ends',
         'status',
@@ -58,6 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'cv_template' => 'array',
     ];
 
 }

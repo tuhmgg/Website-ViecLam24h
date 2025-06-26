@@ -1,6 +1,11 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="d-flex justify-content-end mb-4">
+                <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+                    <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                </a>
+            </div>
 {{----}}
             <h1>Đăng Bài</h1>
             @if(Session::has('message'))

@@ -20,6 +20,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     {{--    summernote--}}
     {{--    <link href="{{asset('css/summernote.min.css')}}" rel="stylesheet">--}}
     {{--    <link rel="stylesheet" href="{{asset('css/summernote-bs4.min.css')}}">--}}
@@ -33,6 +37,13 @@
 
     <link href="{{asset('css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
 
+    <style>
+        .btn-secondary:hover {
+            background-color: #f8e4b2 !important;
+            border-color: #f7dfa6 !important;
+            color: #3a3b45 !important;
+        }
+    </style>
 
 </head>
 
@@ -52,7 +63,31 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            @include('layouts.dashboard.contentcv')
+            <div class="container-fluid py-4">
+                @if(Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        {{Session::get('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                
+                @if(Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        {{Session::get('error')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                
+                <div class="d-sm-flex align-items-center justify-content-end mb-4">
+                    <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+                        <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                    </a>
+                </div>
+                
+                @include('layouts.dashboard.contentcv')
+            </div>
             <!-- /.container-fluid -->
 
         </div>
@@ -108,6 +143,7 @@ function confirmLogout() {
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -135,6 +171,11 @@ function confirmLogout() {
         $('#summernote').summernote();
         $('#summernote2').summernote();
         $( "#datepicker" ).datepicker();
+        
+        // Auto-hide alerts after 5 seconds
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 5000);
     });
 </script>
 

@@ -20,7 +20,7 @@ class RedirectAdminToDashboard
         if (auth()->check() && auth()->user()->user_type === 'admin') {
             // Loại trừ các route xác thực và logout
             $excluded = [
-                'logout', 'login', 'register', 'password*', 'email*', 'verify*', 'api/*'
+                'logout', 'login', 'register', 'password*', 'email*', 'verify*', 'api/*', 'suggest*', 'user/profile*', 'dashboard', 'user/cv*', 'job*', 'applicants*', 'application*', 'subscribe*', 'payment*', 'pay*', 'help', 'about', 'contact', '/', 'job/show*', 'job/search*', 'user/cv/view*', 'user/cv/preview*', 'user/cv/create*'
             ];
             foreach ($excluded as $pattern) {
                 if ($request->is($pattern)) {

@@ -1,8 +1,8 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 mb-4">
-            <a href="{{route('job.index')}}" class="btn btn-primary">Quay lại</a>
-        </div>
+<div class="d-flex justify-content-end mb-4">
+    <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+        <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+    </a>
+</div>
 {{----}}
         <div class="col-md-10">
             <div class="row justify-content-start">

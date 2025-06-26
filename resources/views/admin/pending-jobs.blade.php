@@ -2,15 +2,10 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Tin tuyển dụng chờ duyệt</h1>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary btn-sm">
-                    <i class="fas fa-arrow-left"></i> Quay lại Dashboard
-                </a>
-            </div>
-        </div>
+    <div class="d-flex justify-content-end mb-4">
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+            <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+        </a>
     </div>
 
     @if(session('success'))

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center">
             <!-- Brand - Logo -->
-            <a class="navbar-brand d-flex align-items-center" href="{{route('homepage')}}">
+            <a class="navbar-brand d-flex align-items-center" href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('homepage') }}">
                 <img src="{{asset('image/logo-vieclam24h.png')}}" alt="Logo" class="navbar-logo">
             </a>
             
@@ -102,7 +102,7 @@
                 <!-- AI Assistant -->
                 <li class="nav-item {{ request()->routeIs('suggest.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('suggest.index')}}">
-                        <i class="fas fa-magic mr-1"></i>
+                        <i class="fas fa-robot mr-1"></i>
                         <span>Trợ Lý AI</span>
                     </a>
                 </li>
@@ -140,14 +140,14 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown">
                         <div class="px-4 py-3 border-bottom">
-                            <h6 class="text-primary mb-0">{{ auth()->user()->name }}</h6>
+                            <h6 class="mb-0" style="color: #720000 !important;">{{ auth()->user()->name }}</h6>
                             <small class="text-muted">{{ auth()->user()->email }}</small>
                         </div>
                         <a class="dropdown-item" href="{{ route('user.profile') }}">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Cá Nhân
                         </a>
-                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                        <a class="dropdown-item" href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}">
                             <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Bảng điều khiển
                         </a>
@@ -183,8 +183,8 @@
                 Bạn có chắc chắn muốn đăng xuất khỏi phiên làm việc hiện tại không?
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                <button class="btn btn-primary" onclick="confirmLogout()">Đăng Xuất</button>
+                <button class="btn" type="button" data-dismiss="modal" style="color: #3a3b45; background-color: #f8e4b2; border-color: #f7dfa6;">Hủy</button>
+                <button class="btn" onclick="confirmLogout()" style="color: #fff; background-color: #870912; border-color: #7b0810;">Đăng Xuất</button>
             </div>
         </div>
     </div>

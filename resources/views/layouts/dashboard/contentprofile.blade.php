@@ -1,6 +1,11 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{ auth()->user()->user_type == 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="btn btn-secondary" style="background-color: #FBF0D5; border-color: #FBF0D5; color: #3a3b45;">
+                    <i class="fas fa-arrow-left me-2"></i>Quay về Dashboard
+                </a>
+            </div>
             {{----}}
             <h1>Cập Nhật Thông Tin Cá Nhân</h1>
             @if(Session::has('message'))
@@ -16,14 +21,14 @@
                     @else
                         <label for="logo">Ảnh Đại Diện</label>
                     @endif
-                    <input type="file" name="profile_pic" id="logo" class="form-control-file">
-                    @if($errors->has('logo'))
-                        <div class="error"> {{$errors->first('logo')}}  </div>
+                    <input type="file" name="profile_pic" id="logo" class="form-control-file" accept="image/*">
+                    @if($errors->has('profile_pic'))
+                        <div class="error"> {{$errors->first('profile_pic')}}  </div>
                     @endif
 
                     @if(auth()->user()->profile_pic)
                         <div class="mt-4">
-                            <img src="{{asset('storage/'.auth()->user()->profile_pic)}}" height="200" alt="">
+                            <img src="{{asset('storage/'.auth()->user()->profile_pic)}}" height="200" alt="Profile Picture">
                         </div>
                     @endif
                 </div>
@@ -38,15 +43,15 @@
                     @else
                         <label for="name">Họ và Tên</label>
                     @endif
-                    <input type="text" name="name" id="name" class="form-control" value="{{auth()->user()->name}}">
+                    <input type="text" name="name" id="name" class="form-control" value="{{auth()->user()->name}}" required>
                     @if($errors->has('name'))
                         <div class="error"> {{$errors->first('name')}}  </div>
                     @endif
                 </div>
                 <div class="form-group">
                         <label for="about">Giới Thiệu</label>
-                    <input type="text" name="about" id="name" class="form-control" value="{{auth()->user()->about}}">
-                    @if($errors->has('name'))
+                    <input type="text" name="about" id="about" class="form-control" value="{{auth()->user()->about}}" required>
+                    @if($errors->has('about'))
                         <div class="error"> {{$errors->first('about')}}  </div>
                     @endif
                 </div>
