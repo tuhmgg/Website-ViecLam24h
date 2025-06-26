@@ -11,7 +11,7 @@ use App\Http\Middleware\isPremiumUser;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\FavoriteController;
 
 
 /*
@@ -142,3 +142,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 });
 
 Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class, 'downloadCvPdfFromBuilder'])->name('user.cv.downloadPdf');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorites/{listing}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
+});
