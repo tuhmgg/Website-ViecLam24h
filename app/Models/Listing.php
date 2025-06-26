@@ -53,6 +53,10 @@ class Listing extends Model
     {
         return $query->where('status', 'rejected');
     }
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
 
 //
 }
