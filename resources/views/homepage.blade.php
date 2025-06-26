@@ -139,6 +139,17 @@
             </div>
         </div>
 
+                      <div class="my-3" style="margin-left: 5%;">
+                        <a href="{{ route('favorites.index') }}" 
+                        class="btn btn-save-toggle {{ request()->is('favorites') ? 'active' : '' }}"
+                        style="border-radius: 25px;">
+                            <i class="{{ request()->is('favorites') ? 'fas' : 'far' }} fa-heart me-2"></i>
+                            Đã lưu
+                        </a>
+                    </div>
+
+
+
         {{-- Jobs Grid --}}
         <div class="row g-4">
             @foreach($jobs as $job)
@@ -149,27 +160,37 @@
                             {{-- Company Header --}}
                             <div class="d-flex align-items-start justify-content-between mb-3">
                                 <div class="d-flex align-items-center flex-grow-1">
-                                    <div class="position-relative me-3">
-                                        <img src="{{asset('storage/'.$job->profile->profile_pic)}}" 
-                                             class="rounded-3 border zoom-img" 
-                                             style="width: 50px; height: 50px; object-fit: cover;" 
-                                             alt="Company Logo">
-                                        @if($job->profile->plan == "yearly")
-                                            <i class="fas fa-check-circle position-absolute text-primary" 
-                                               style="bottom: -5px; right: -5px; background: white; border-radius: 50%;"></i>
+                                    {{-- Ảnh đại diện công ty --}}
+                                    <div class="position-relative me-3" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden;">
+                                        <img src="{{ Storage::url($job->feature_image) }}"
+                                            alt="Avatar"
+                                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                                        @if($job->profile->plan == 'yearly')
+                                            <i class="fas fa-check-circle position-absolute text-primary"
+                                            style="bottom: -5px; right: -5px; background: white; border-radius: 50%;"></i>
                                         @endif
                                     </div>
+
+                                    {{-- Tên công ty & địa chỉ --}}
                                     <div class="flex-grow-1">
-                                        <h6 class="fw-bold mb-1">{{$job->profile->name}}</h6>
+                                        <h6 class="fw-bold mb-1">{{ $job->profile->name }}</h6>
                                         <p class="text-muted small mb-0">
-                                            <i class="fas fa-map-marker-alt me-1"></i>{{$job->address}}
+                                            <i class="fas fa-map-marker-alt me-1"></i>{{ $job->address }}
                                         </p>
                                     </div>
                                 </div>
-                                <button class="btn btn-sm btn-outline-danger border-0">
-                                    <i class="far fa-heart"></i>
+
+                                {{-- Nút trái tim lưu --}}
+                                @php
+                                    $isFavorited = auth()->check() && auth()->user()->hasFavorited($job->id);
+                                @endphp
+                                <button 
+                                    class="btn btn-sm border favorite-toggle {{ $isFavorited ? 'favorited' : '' }}" 
+                                    data-id="{{ $job->id }}">
+                                    <i class="{{ $isFavorited ? 'fas' : 'far' }} fa-heart"></i>
                                 </button>
                             </div>
+
 
                             {{-- Job Title --}}
                             <h5 class="fw-bold mb-2">{{$job->title}}</h5>
@@ -236,7 +257,114 @@
     </div>
 </section>
 
+<script>
+document.querySelectorAll('.favorite-toggle').forEach(button => {
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const jobId = this.getAttribute('data-id');
+        const icon = this.querySelector('i');
+
+        fetch(`/favorites/${jobId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.favorited) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                this.classList.add('favorited');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                this.classList.remove('favorited');
+            }
+        });
+    });
+});
+</script>
+
+
+
 <style>
+    /* Trạng thái mặc định (chưa nhấn) */
+.btn-save-toggle {
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+    transition: all 0.3s ease;
+    padding: 8px 18px;
+    font-weight: 600;
+    border-radius: 25px;
+}
+
+/* Trạng thái đã chọn */
+.btn-save-toggle.active {
+    background-color: #8B0000; /* đỏ đô */
+    color: white;
+    border-color: #8B0000;
+}
+
+/* Hover cả hai trạng thái: giữ viền như cũ */
+.btn-save-toggle:hover {
+    border: 2px solid black; /* giữ viền đen */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    opacity: 0.95;
+    color: black; /* giữ màu chữ nếu chưa active */
+}
+
+/* Hover khi đã active: màu trắng không bị đổi */
+.btn-save-toggle.active:hover {
+    color: white;
+    border-color: #8B0000;
+}
+
+    .favorite-toggle {
+    color: #ccc;
+    border: 1px solid #ccc;
+    background: #fff;
+    transition: 0.3s ease;
+    border-radius: 50px;
+    padding: 6px 10px;
+}
+
+.favorite-toggle.favorited {
+    color: #e63946;
+    border-color: #e63946;
+}
+
+.favorite-toggle:hover {
+    background: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.btn-save-toggle {
+    border: 2px solid #8B0000;
+    color: black;
+    background: white;
+    transition: 0.3s ease;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 25px;
+}
+
+.btn-save-toggle.active {
+    background: #8B0000;
+    color: white;
+}
+
+.btn-save-toggle:hover {
+    opacity: 0.9;
+}
+
+.mt-3, .mb-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
 .job-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;

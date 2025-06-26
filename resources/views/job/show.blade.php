@@ -8,12 +8,25 @@
         </div>
     @endif
     
-    <img src="{{Storage::url($listing->feature_image)}}" style="width: 100%; height: 17vw;" alt="">
+    <img src="{{ Storage::url($listing->feature_image) }}"
+     style="width: 100%; height: 20vw; object-fit: cover; display: block;"
+     alt="Ảnh bìa">
+
+
 
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center justify-content-md-start">
-                <img class="border-1" style="margin-top: -3vw;border-radius: 100px; height: 150px; box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;" src="{{Storage::url($listing->profile->profile_pic)}}">
+                <img src="{{ Storage::url($listing->feature_image) }}"
+                    alt="Avatar"
+                    style="margin-top: -3vw;
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+                                rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;">
+
             </div>
 
             <div class="col-12 d-flex justify-content-center justify-content-md-start">
@@ -74,42 +87,6 @@
                 {{$listing->salary}}
             @endif
         </h5>
-
-        {{-- Applicants Statistics Section --}}
-        @if(isset($applicants))
-            <div class="row mb-4 mt-4">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="mb-0">
-                                <i class="fas fa-users mr-2"></i>
-                                Thống Kê Ứng Viên
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-primary">{{$applicants->count()}}</h3>
-                                    <p class="text-muted">Tổng Ứng Viên</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-success">{{$applicants->where('pivot.created_at', '>=', now()->subDays(7))->count()}}</h3>
-                                    <p class="text-muted">Ứng Viên Tuần Này</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-warning">{{$applicants->where('pivot.shortlisted', 1)->count()}}</h3>
-                                    <p class="text-muted">Đã Shortlist</p>
-                                </div>
-                                <div class="col-md-3 text-center">
-                                    <h3 class="text-info">{{$applicants->where('user_type', 'employee')->count()}}</h3>
-                                    <p class="text-muted">Nhân Viên</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
 
         {{-- Contact email --}}
         @if(auth()->user())

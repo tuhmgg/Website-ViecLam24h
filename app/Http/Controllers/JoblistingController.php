@@ -87,17 +87,7 @@ class JoblistingController extends Controller
 
             }
         })->latest()->paginate(8);
-
-        $saved = $request->saved;   // ?saved=1 trên URL
-
-        $query = Listing::approved();
-
-        if ($saved && auth()->check()) {
-            $favIds = auth()->user()->favorites()->pluck('listing_id');
-            $query->whereIn('id', $favIds);
-        }
-
-        $jobs = $query->latest()->paginate(8);
+        
         // đếm số lượng job
         $count = Listing::approved()->count();
         // đếm số lượng người đăng bài
