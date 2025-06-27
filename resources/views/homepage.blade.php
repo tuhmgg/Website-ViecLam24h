@@ -138,18 +138,6 @@
                 </div>
             </div>
         </div>
-
-                      <div class="my-3" style="margin-left: 5%;">
-                        <a href="{{ route('job.favorites') }}" 
-                        class="btn btn-save-toggle {{ request()->is('favorites') ? 'active' : '' }}"
-                        style="border-radius: 25px;">
-                            <i class="{{ request()->is('favorites') ? 'fas' : 'far' }} fa-heart me-2"></i>
-                            Đã lưu
-                        </a>
-                    </div>
-
-
-
         {{-- Jobs Grid --}}
         <div class="row g-4">
             @foreach($jobs as $job)
