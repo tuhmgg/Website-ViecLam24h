@@ -26,5 +26,14 @@ class FavoriteController extends Controller
         $favorites = Auth::user()->favorites()->with('profile')->latest()->paginate(8);
         return view('job.favorites', compact('favorites'));
     }
+     public function favorites()
+    {
+        $user = Auth::user();
+
+        // Nếu bạn dùng bảng trung gian favorites (belongsToMany)
+        $favorites = $user->favorites; // bạn phải có quan hệ trong model User
+
+        return view('job.favorites', compact('favorites'));
+    }
 }
 

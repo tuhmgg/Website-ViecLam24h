@@ -152,6 +152,7 @@ Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class
 Route::middleware(['auth'])->group(function () {
     Route::post('/favorites/{listing}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 });
+Route::get('/jobs/favorites', [FavoriteController::class, 'favorites'])->name('job.favorites');
 
 Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit')->middleware(['auth']);
 
