@@ -80,15 +80,31 @@
             {{-- Check if user has already applied --}}
             @php
                 $hasApplied = false;
+                $applicationStatus = null;
                 if(isset($applicants) && $applicants->count() > 0) {
-                    $hasApplied = $applicants->contains('id', Auth::id());
+                    $userApplication = $applicants->where('id', Auth::id())->first();
+                    if($userApplication) {
+                        $hasApplied = true;
+                        $applicationStatus = $userApplication->pivot->application_status ?? 'pending';
+                    }
                 }
             @endphp
             
             @if($hasApplied)
-                <button class="btn btn-success mt-4" disabled>
-                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Đã Ứng Tuyển
-                </button>
+                @if($applicationStatus == 'rejected')
+                    <button class="btn btn-danger mt-4" disabled>
+                        <i class="fa-solid fa-times" style="color: #ffffff;"></i> Đã Bị Từ Chối
+                    </button>
+                    @if(auth()->user()->user_type == "employee")
+                        <button class="btn btn-warning mt-4 ml-2" data-bs-toggle="modal" data-bs-target="#applyModal">
+                            <i class="fa-solid fa-redo" style="color: #ffffff;"></i> Ứng Tuyển Lại
+                        </button>
+                    @endif
+                @else
+                    <button class="btn btn-success mt-4" disabled>
+                        <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Đã Ứng Tuyển
+                    </button>
+                @endif
             @else
                 {{-- If user is the job poster --}}
                 @if($listing->user_id == auth()->user()->id)
@@ -133,11 +149,34 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Xác Nhận Ứng Tuyển Vị Trí: {{$listing->title}}</p>
+                            @php
+                                $hasApplied = false;
+                                $applicationStatus = null;
+                                if(isset($applicants) && $applicants->count() > 0) {
+                                    $userApplication = $applicants->where('id', Auth::id())->first();
+                                    if($userApplication) {
+                                        $hasApplied = true;
+                                        $applicationStatus = $userApplication->pivot->application_status ?? 'pending';
+                                    }
+                                }
+                            @endphp
+                            
+                            @if($hasApplied && $applicationStatus == 'rejected')
+                                <p>Xác Nhận Ứng Tuyển Lại Vị Trí: {{$listing->title}}</p>
+                                <p class="text-warning"><small>Hồ sơ của bạn sẽ được gửi lại để xem xét.</small></p>
+                            @else
+                                <p>Xác Nhận Ứng Tuyển Vị Trí: {{$listing->title}}</p>
+                            @endif
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                            <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                            <button type="submit" class="btn btn-primary">
+                                @if($hasApplied && $applicationStatus == 'rejected')
+                                    Ứng Tuyển Lại
+                                @else
+                                    Xác Nhận
+                                @endif
+                            </button>
                         </div>
                     </div>
                 </div>

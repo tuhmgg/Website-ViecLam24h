@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ShortlistMail;
 use App\Models\Listing;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Mail;
-
 
 class ApplicantController extends Controller
 {
@@ -47,10 +45,9 @@ class ApplicantController extends Controller
         if($listing->user_id != auth()->user()->id){
             abort(403);
         }
-        // Lấy ra các ứng viên có hồ sơ đã được admin duyệt
-        $users = $listing->users()
-                         ->wherePivot('application_status', 'approved')
-                         ->paginate(6);
+        
+        // Lấy ra tất cả ứng viên (không chỉ những người đã được admin duyệt)
+        $users = $listing->users()->paginate(6);
 
         return view('applicants.view', compact('listing', 'users'));
     }
@@ -93,8 +90,21 @@ class ApplicantController extends Controller
         }
         
         // Kiểm tra xem đã ứng tuyển chưa
-        if ($user->listings()->where('listing_id', $listingId)->exists()) {
-            return back()->with('error', 'Bạn đã ứng tuyển vị trí này rồi.');
+        $existingApplication = $user->listings()->where('listing_id', $listingId)->first();
+        
+        if ($existingApplication) {
+            $applicationStatus = $existingApplication->pivot->application_status;
+            
+            // Nếu đã bị từ chối, cho phép ứng tuyển lại
+            if ($applicationStatus === 'rejected') {
+                $user->listings()->updateExistingPivot($listingId, [
+                    'application_status' => 'pending',
+                    'shortlisted' => false
+                ]);
+                return back()->with('message', 'Đã ứng tuyển lại thành công. Hồ sơ của bạn đang chờ quản trị viên duyệt.');
+            } else {
+                return back()->with('error', 'Bạn đã ứng tuyển vị trí này rồi.');
+            }
         }
         
         // Thêm vào danh sách ứng tuyển
@@ -107,17 +117,33 @@ class ApplicantController extends Controller
     }
 
     public function removeApplicant($listingId, $userId)
-{
-    $listing = Listing::findOrFail($listingId);
+    {
+        $listing = Listing::findOrFail($listingId);
 
-    if ($listing->user_id !== auth()->id()) {
-        abort(403, 'Không có quyền thực hiện hành động này.');
+        if ($listing->user_id !== auth()->id()) {
+            abort(403, 'Không có quyền thực hiện hành động này.');
+        }
+
+        $listing->users()->detach($userId);
+
+        return redirect()->back()->with('message', 'Đã xóa ứng viên khỏi danh sách ứng tuyển.');
     }
 
-    $listing->users()->detach($userId);
-
-    return redirect()->back()->with('message', 'Đã xóa ứng viên khỏi danh sách ứng tuyển.');
-}
-
-
+    public function rejectApplicant($listingId, $userId)
+    {
+        $listing = Listing::findOrFail($listingId);
+        
+        // Kiểm tra quyền: chỉ admin hoặc chủ tin tuyển dụng mới có thể từ chối
+        if (auth()->user()->user_type !== 'admin' && $listing->user_id !== auth()->id()) {
+            abort(403, 'Không có quyền thực hiện hành động này.');
+        }
+        
+        // Cập nhật trạng thái thành rejected
+        $listing->users()->updateExistingPivot($userId, [
+            'application_status' => 'rejected',
+            'shortlisted' => false
+        ]);
+        
+        return redirect()->back()->with('message', 'Đã từ chối ứng viên thành công.');
+    }
 }

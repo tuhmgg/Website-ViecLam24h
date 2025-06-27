@@ -92,17 +92,14 @@ Route::get('user/cv', [UserController::class, 'cv'])->name('user.cv');
 Route::post('user/cv', [UserController::class, 'updateCv'])->name('user.cv.update');
 Route::delete('user/cv', [UserController::class, 'deleteCv'])->name('user.cv.delete');
 Route::post('user/cv/upload-from-builder', [UserController::class, 'uploadCvFromBuilder'])->name('user.cv.upload-from-builder');
+
 Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('user.cv.view')->middleware(['auth']);
 
 Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('applicants/{listing:slug}', [ApplicantController::class, 'view'])->name('applicants.view');
 Route::delete('/applicants/{listingId}/{userId}', [ApplicantController::class, 'removeApplicant'])->name('applicants.remove');
 Route::post('shortlist/{listingId}/{userId}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
-
-Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit')->middleware(['auth']);
-
-// route job.search và route job.filter
-Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
+Route::post('reject/{listingId}/{userId}', [ApplicantController::class, 'rejectApplicant'])->name('applicant.reject');
 
 // route tới suggest
 Route::get('/suggest', [SuggestController::class, 'index'])->name('suggest.index');
@@ -137,6 +134,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
     // Application management routes
     Route::get('/applications/pending', [AdminController::class, 'pendingApplications'])->name('applications.pending');
+    Route::get('/applications/approved', [AdminController::class, 'approvedApplications'])->name('applications.approved');
+    Route::get('/applications/rejected', [AdminController::class, 'rejectedApplications'])->name('applications.rejected');
     Route::post('/application/{listing_id}/{user_id}/approve', [AdminController::class, 'approveApplication'])->name('application.approve');
     Route::post('/application/{listing_id}/{user_id}/reject', [AdminController::class, 'rejectApplication'])->name('application.reject');
     
@@ -149,3 +148,8 @@ Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class
 Route::middleware(['auth'])->group(function () {
     Route::post('/favorites/{listing}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 });
+
+Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit')->middleware(['auth']);
+
+// route job.search và route job.filter
+Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
