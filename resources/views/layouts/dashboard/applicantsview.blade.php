@@ -61,7 +61,7 @@
                                     @if($user->pivot->application_status == 'pending')
                                         <span class="badge badge-warning">Đang chờ</span>
                                     @elseif($user->pivot->application_status == 'approved')
-                                        <span class="badge badge-success">Đáp ứng đủ</span>
+                                        <span class="badge badge-success status-badge" data-user-id="{{$user->id}}">Đáp ứng đủ</span>
                                     @elseif($user->pivot->application_status == 'rejected')
                                         <span class="badge badge-danger">Đã từ chối</span>
                                     @elseif($user->pivot->shortlisted == '1')
@@ -83,7 +83,7 @@
                                     <div class="d-flex flex-column gap-1">
                                         {{-- Nút Thêm / Đã thêm --}}
                                         @if($user->pivot->application_status != 'rejected')
-                                            <form action="{{ route('applicant.shortlist', [$listing->id, $user->id]) }}" method="POST">
+                                            <form action="{{ route('applicant.shortlist', [$listing->id, $user->id]) }}" method="POST" class="shortlist-form" data-user-id="{{$user->id}}">
                                                 @csrf
                                                 @if($user->pivot->shortlisted == '1')
                                                     <button class="btn btn-dark btn-sm w-100" disabled>
@@ -247,5 +247,59 @@ document.addEventListener('DOMContentLoaded', function() {
     // Thêm tooltip cho checkbox
     checkbox1.title = 'Hiển thị ứng viên đã được thêm vào danh sách';
     checkbox2.title = 'Hiển thị ứng viên chưa được thêm vào danh sách';
+    
+    // Xử lý form shortlist để thay đổi badge
+    const shortlistForms = document.querySelectorAll('.shortlist-form');
+    shortlistForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userId = this.getAttribute('data-user-id');
+            const statusBadge = document.querySelector(`.status-badge[data-user-id="${userId}"]`);
+            const submitButton = this.querySelector('button[type="submit"]');
+            
+            if (statusBadge && submitButton) {
+                // Thay đổi badge thành "Đã thêm"
+                statusBadge.textContent = 'Đã thêm';
+                statusBadge.classList.remove('badge-success');
+                statusBadge.classList.add('badge-success');
+                
+                // Thay đổi nút thành "Đã thêm" và disable
+                submitButton.innerHTML = '<i class="fas fa-check"></i> Đã thêm';
+                submitButton.classList.remove('btn-success');
+                submitButton.classList.add('btn-dark');
+                submitButton.disabled = true;
+                
+                // Submit form thực sự
+                fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: new URLSearchParams(new FormData(this))
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        // Nếu có lỗi, khôi phục lại trạng thái cũ
+                        statusBadge.textContent = 'Đáp ứng đủ';
+                        submitButton.innerHTML = '<i class="fas fa-plus"></i> Thêm';
+                        submitButton.classList.remove('btn-dark');
+                        submitButton.classList.add('btn-success');
+                        submitButton.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Khôi phục lại trạng thái cũ nếu có lỗi
+                    statusBadge.textContent = 'Đáp ứng đủ';
+                    submitButton.innerHTML = '<i class="fas fa-plus"></i> Thêm';
+                    submitButton.classList.remove('btn-dark');
+                    submitButton.classList.add('btn-success');
+                    submitButton.disabled = false;
+                });
+            }
+        });
+    });
 });
 </script> 
