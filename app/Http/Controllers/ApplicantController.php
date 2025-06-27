@@ -61,11 +61,16 @@ class ApplicantController extends Controller
         $user = User::find($userId);
         if($listing){
             $listing->users()->updateExistingPivot($userId, ['shortlisted' => true]);
-//            kiểm tra xem ứng viên đó trong db trường mail có true hay không nếu có thì gửi mail
-            if($user->mail == true){
+            
+            // Gửi email thông báo cho ứng viên được thêm vào danh sách
+            try {
                 Mail::to($user->email)->queue(new ShortlistMail($user->name, $listing->title, $company_name, $company_email));
+            } catch (\Exception $e) {
+                // Log lỗi nếu không gửi được email nhưng vẫn cập nhật trạng thái
+                \Log::error('Không thể gửi email thông báo: ' . $e->getMessage());
             }
-            return redirect()->back()->with('message', 'Đã thêm vào danh sách');
+            
+            return redirect()->back()->with('message', 'Đã thêm vào danh sách và gửi email thông báo');
         }
         return redirect()->back();
     }
