@@ -75,20 +75,29 @@
             @endif
         </h5>
 
-        {{-- Contact email --}}
+        {{-- Apply button section --}}
         @if(auth()->user())
-            {{-- Check if $listing->users already has pivot table --}}
-            @if(isset($applicants) && $applicants->contains(Auth::id()))
+            {{-- Check if user has already applied --}}
+            @php
+                $hasApplied = false;
+                if(isset($applicants) && $applicants->count() > 0) {
+                    $hasApplied = $applicants->contains('id', Auth::id());
+                }
+            @endphp
+            
+            @if($hasApplied)
                 <button class="btn btn-success mt-4" disabled>
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Đã Ứng Tuyển
                 </button>
             @else
+                {{-- If user is the job poster --}}
                 @if($listing->user_id == auth()->user()->id)
                     <a href="{{route('job.edit', $listing->id)}}" class="btn btn-dark mt-4">
                         <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i> Sửa bài
                     </a>
                 @endif
 
+                {{-- If user is an employee and can apply --}}
                 @if(auth()->user()->user_type == "employee")
                     @if($listing->application_close_date < now())
                         <button class="btn btn-danger mt-4" disabled>
@@ -102,6 +111,7 @@
                 @endif
             @endif
         @else
+            {{-- User not logged in --}}
             @if($listing->application_close_date < now())
                 <button class="btn btn-danger mt-4" disabled>
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Đã Hết Hạn
@@ -113,7 +123,7 @@
             @endif
         @endif
 
-        {{-- Apply confirmation modal --}}
+        {{-- Apply confirmation modal for logged in users --}}
         <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
             <form action="{{route('application.submit', [$listing->id])}}" method="POST">@csrf
                 <div class="modal-dialog">
@@ -134,6 +144,7 @@
             </form>
         </div>
 
+        {{-- Login required modal for non-logged in users --}}
         <div class="modal fade" id="applyModal2" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

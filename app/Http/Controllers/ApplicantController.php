@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Mail;
 
 class ApplicantController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //        lấy ra số lượng job của user và lấy thông tin các user đã ứng tuyển
@@ -71,13 +76,34 @@ class ApplicantController extends Controller
     public function apply($listingId)
     {
         $user = auth()->user();
+        
+        // Kiểm tra user đã đăng nhập
+        if (!$user) {
+            return redirect()->route('login');
+        }
+        
+        // Kiểm tra user có phải là employee không
+        if ($user->user_type !== 'employee') {
+            return back()->with('error', 'Chỉ ứng viên mới có thể ứng tuyển.');
+        }
+        
+        // Kiểm tra CV
         if(!$user->resume){
             return back()->with('error', 'Vui lòng tải lên CV trước khi ứng tuyển.');
         }
-// synsWithoutDetaching() is a method that syncs the pivot table without removing the existing data. ex: if the user has already applied for the job, it will not remove the existing data and add the new one.
-        $user->listings()->syncWithoutDetaching($listingId);
+        
+        // Kiểm tra xem đã ứng tuyển chưa
+        if ($user->listings()->where('listing_id', $listingId)->exists()) {
+            return back()->with('error', 'Bạn đã ứng tuyển vị trí này rồi.');
+        }
+        
+        // Thêm vào danh sách ứng tuyển
+        $user->listings()->attach($listingId, [
+            'shortlisted' => false,
+            'application_status' => 'pending'
+        ]);
+        
         return back()->with('message', 'Đã ứng tuyển thành công. Hồ sơ của bạn đang chờ quản trị viên duyệt.');
-
     }
 
     public function removeApplicant($listingId, $userId)

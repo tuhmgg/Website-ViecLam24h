@@ -92,14 +92,14 @@ Route::get('user/cv', [UserController::class, 'cv'])->name('user.cv');
 Route::post('user/cv', [UserController::class, 'updateCv'])->name('user.cv.update');
 Route::delete('user/cv', [UserController::class, 'deleteCv'])->name('user.cv.delete');
 Route::post('user/cv/upload-from-builder', [UserController::class, 'uploadCvFromBuilder'])->name('user.cv.upload-from-builder');
-Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('user.cv.view');
+Route::get('user/cv/view/{user_id?}', [UserController::class, 'viewCv'])->name('user.cv.view')->middleware(['auth']);
 
 Route::get('applicants', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('applicants/{listing:slug}', [ApplicantController::class, 'view'])->name('applicants.view');
 Route::delete('/applicants/{listingId}/{userId}', [ApplicantController::class, 'removeApplicant'])->name('applicants.remove');
 Route::post('shortlist/{listingId}/{userId}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
 
-Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit');
+Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit')->middleware(['auth']);
 
 // route job.search và route job.filter
 Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
@@ -139,6 +139,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/applications/pending', [AdminController::class, 'pendingApplications'])->name('applications.pending');
     Route::post('/application/{listing_id}/{user_id}/approve', [AdminController::class, 'approveApplication'])->name('application.approve');
     Route::post('/application/{listing_id}/{user_id}/reject', [AdminController::class, 'rejectApplication'])->name('application.reject');
+    
+    // Admin CV view route
+    Route::get('/cv/{user_id}', [UserController::class, 'viewCv'])->name('cv.view');
 });
 
 Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class, 'downloadCvPdfFromBuilder'])->name('user.cv.downloadPdf');
