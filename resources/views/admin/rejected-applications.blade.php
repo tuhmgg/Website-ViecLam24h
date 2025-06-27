@@ -8,11 +8,20 @@
         </a>
     </div>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hồ sơ chờ duyệt ({{ $applications->total() }})</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hồ sơ từ chối ({{ $applications->total() }})</h6>
                 </div>
                 <div class="card-body">
                     @if($applications->count() > 0)
@@ -23,6 +32,7 @@
                                         <th>Ứng viên</th>
                                         <th>Vị trí ứng tuyển</th>
                                         <th>Ngày ứng tuyển</th>
+                                        <th>Ngày từ chối</th>
                                         <th>Xem CV</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -41,7 +51,10 @@
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($app->application_date)->format('d/m/Y H:i') }}</td>
                                         <td>
-                                             <a href="{{ route('user.cv.view', ['user_id' => $app->user_id]) }}" 
+                                            <span class="badge badge-danger">Đã từ chối</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.cv.view', $app->user_id) }}" 
                                                class="btn btn-info btn-sm" target="_blank" title="Xem CV">
                                                 <i class="fas fa-file-pdf"></i> Xem CV
                                             </a>
@@ -52,18 +65,9 @@
                                                       method="POST" style="display: inline;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-success btn-sm" 
-                                                            title="Duyệt hồ sơ" 
-                                                            onclick="return confirm('Bạn có chắc muốn duyệt hồ sơ này và gửi cho nhà tuyển dụng?')">
-                                                        <i class="fas fa-check"></i> Duyệt
-                                                    </button>
-                                                </form>
-                                                <form action="{{ route('admin.application.reject', ['listing_id' => $app->listing_id, 'user_id' => $app->user_id]) }}" 
-                                                      method="POST" style="display: inline;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                                            title="Từ chối hồ sơ" 
-                                                            onclick="return confirm('Bạn có chắc muốn từ chối hồ sơ này?')">
-                                                        <i class="fas fa-times"></i> Từ chối
+                                                            title="Duyệt lại hồ sơ" 
+                                                            onclick="return confirm('Bạn có chắc muốn duyệt lại hồ sơ này?')">
+                                                        <i class="fas fa-check"></i> Duyệt lại
                                                     </button>
                                                 </form>
                                             </div>
@@ -80,8 +84,8 @@
                         </div>
                     @else
                         <div class="text-center py-4">
-                            <i class="fas fa-inbox fa-3x text-gray-300 mb-3"></i>
-                            <h5 class="text-gray-500">Không có hồ sơ nào chờ duyệt</h5>
+                            <i class="fas fa-times-circle fa-3x text-danger mb-3"></i>
+                            <h5 class="text-gray-500">Không có hồ sơ nào bị từ chối</h5>
                         </div>
                     @endif
                 </div>

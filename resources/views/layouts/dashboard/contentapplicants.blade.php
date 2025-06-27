@@ -48,7 +48,8 @@
                             <td>{{$listing->created_at->format('d-m-Y')}}</td>
                             <td>{{$listing->users_count}}</td>
                             <td>{{$listing->count}}</td>
-                            <td>{{$listing->users_count - $listing->count}}</td>
+                            <td>{{$listing->users()->where('application_status', 'approved')->count()}}</td>
+                            <td>{{$listing->users()->where('application_status', 'rejected')->count()}}</td>
                             <td><a href="{{route('applicants.view',$listing->slug)}}" class="btn btn-success container-fluid">Xem ứng viên</a></td>
                             {{--                        modal--}}
                             <div class="modal fade" id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

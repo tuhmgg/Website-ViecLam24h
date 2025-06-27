@@ -167,17 +167,4 @@ class AdminController extends Controller
         
         return back()->with('success', 'Hồ sơ đã được duyệt và gửi đến nhà tuyển dụng.');
     }
-
-    /**
-     * Từ chối hồ sơ ứng tuyển
-     */
-    public function rejectApplication($listing_id, $user_id)
-    {
-        DB::table('listing_user')
-            ->where('listing_id', $listing_id)
-            ->where('user_id', $user_id)
-            ->update(['application_status' => 'rejected']);
-
-        return back()->with('success', 'Hồ sơ đã bị từ chối.');
-    }
 }
