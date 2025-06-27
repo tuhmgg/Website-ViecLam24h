@@ -10,7 +10,10 @@
                 <label  for="btncheck1">Đã thêm</label>
 
                 <input type="checkbox" class="btn-check ml-3" id="checkbox2" checked>
-                <label class="" for="btncheck2">Chưa thêm</label>
+                <label class="" for="btncheck2">Đã duyệt</label>
+
+                <input type="checkbox" class="btn-check ml-3" id="checkbox3" checked>
+                <label class="" for="btncheck3">Chưa duyệt</label>
             </div>
         </div>
     </div>
@@ -24,9 +27,18 @@
     <div class="row" >
     @foreach($users as $user)
 
-                @if($user->pivot->shortlisted)
+                @if($user->pivot->application_status == 'approved' && $user->pivot->shortlisted == '1')
                 <div class="col-lg-6 col-xl-4  no mt-4">
                     <div class="card bg border-bottom-success  pt-2 mt-4 div_box" >
+                @elseif($user->pivot->application_status == 'approved' && $user->pivot->shortlisted != '1')
+                <div class="col-lg-6 col-xl-4  yes mt-4">
+                    <div class="card bg border-bottom-info shadow  pt-2 mt-4" >
+                @elseif($user->pivot->application_status == 'pending')
+                <div class="col-lg-6 col-xl-4  pending mt-4">
+                    <div class="card bg border-bottom-warning shadow  pt-2 mt-4" >
+                @elseif($user->pivot->application_status == 'rejected')
+                <div class="col-lg-6 col-xl-4  rejected mt-4">
+                    <div class="card bg border-bottom-danger shadow  pt-2 mt-4" >
                 @else
                 <div class="col-lg-6 col-xl-4  yes mt-4">
                     <div class="card bg border-bottom-primary shadow  pt-2 mt-4" >
@@ -59,13 +71,15 @@
                                 {{-- Hiển thị trạng thái --}}
                                 <div class="col-12 d-flex justify-content-center mt-3">
                                     @if($user->pivot->application_status == 'pending')
-                                        <span class="badge badge-warning">Đang chờ</span>
+                                        <span class="badge badge-warning">Chưa duyệt</span>
                                     @elseif($user->pivot->application_status == 'approved')
-                                        <span class="badge badge-success status-badge" data-user-id="{{$user->id}}">Đáp ứng đủ</span>
+                                        @if($user->pivot->shortlisted == '1')
+                                            <span class="badge badge-success status-badge" data-user-id="{{$user->id}}">Đã thêm</span>
+                                        @else
+                                            <span class="badge badge-info status-badge" data-user-id="{{$user->id}}">Đã duyệt</span>
+                                        @endif
                                     @elseif($user->pivot->application_status == 'rejected')
                                         <span class="badge badge-danger">Đã từ chối</span>
-                                    @elseif($user->pivot->shortlisted == '1')
-                                        <span class="badge badge-success">Đã thêm</span>
                                     @else
                                         <span class="badge badge-warning">Đang chờ</span>
                                     @endif
@@ -81,8 +95,8 @@
 
                                     {{-- Các nút thao tác --}}
                                     <div class="d-flex flex-column gap-1">
-                                        {{-- Nút Thêm / Đã thêm --}}
-                                        @if($user->pivot->application_status != 'rejected')
+                                        {{-- Nút Thêm / Đã thêm - chỉ hiển thị cho ứng viên đã được duyệt --}}
+                                        @if($user->pivot->application_status == 'approved')
                                             <form action="{{ route('applicant.shortlist', [$listing->id, $user->id]) }}" method="POST" class="shortlist-form" data-user-id="{{$user->id}}">
                                                 @csrf
                                                 @if($user->pivot->shortlisted == '1')
@@ -97,8 +111,8 @@
                                             </form>
                                         @endif
                                         
-                                        {{-- Nút Từ chối --}}
-                                        @if($user->pivot->application_status != 'rejected')
+                                        {{-- Nút Từ chối - chỉ hiển thị cho ứng viên đã được duyệt --}}
+                                        @if($user->pivot->application_status == 'approved' && $user->pivot->shortlisted != '1')
                                             <form action="{{ route('applicant.reject', [$listing->id, $user->id]) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn từ chối ứng viên này?');">
                                                 @csrf
                                                 <button type="submit" class="btn btn-warning btn-sm w-100">
@@ -192,10 +206,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const checkbox1 = document.getElementById('checkbox1');
     const checkbox2 = document.getElementById('checkbox2');
+    const checkbox3 = document.getElementById('checkbox3');
     
     // Lấy tất cả các card
-    const addedCards = document.querySelectorAll('.no'); // Đã thêm (shortlisted = true)
-    const notAddedCards = document.querySelectorAll('.yes'); // Chưa thêm (shortlisted = false)
+    const addedCards = document.querySelectorAll('.no'); // Đã thêm (approved + shortlisted = true)
+    const approvedCards = document.querySelectorAll('.yes'); // Đã duyệt (approved + shortlisted = false)
+    const pendingCards = document.querySelectorAll('.pending'); // Chưa duyệt (pending)
+    const rejectedCards = document.querySelectorAll('.rejected'); // Đã từ chối (rejected)
     
     function updateVisibility() {
         // Xử lý card đã thêm
@@ -208,9 +225,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Xử lý card chưa thêm
-        notAddedCards.forEach(card => {
+        // Xử lý card đã duyệt
+        approvedCards.forEach(card => {
             if (checkbox2.checked) {
+                card.classList.remove('hidden');
+                card.classList.add('fade-in');
+            } else {
+                card.classList.add('hidden', 'fade-out');
+            }
+        });
+        
+        // Xử lý card chưa duyệt
+        pendingCards.forEach(card => {
+            if (checkbox3.checked) {
                 card.classList.remove('hidden');
                 card.classList.add('fade-in');
             } else {
@@ -240,13 +267,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Thêm event listeners
     checkbox1.addEventListener('change', updateVisibility);
     checkbox2.addEventListener('change', updateVisibility);
+    checkbox3.addEventListener('change', updateVisibility);
     
     // Khởi tạo trạng thái ban đầu
     updateVisibility();
     
     // Thêm tooltip cho checkbox
     checkbox1.title = 'Hiển thị ứng viên đã được thêm vào danh sách';
-    checkbox2.title = 'Hiển thị ứng viên chưa được thêm vào danh sách';
+    checkbox2.title = 'Hiển thị ứng viên đã được duyệt';
+    checkbox3.title = 'Hiển thị ứng viên chưa được duyệt';
     
     // Xử lý form shortlist để thay đổi badge
     const shortlistForms = document.querySelectorAll('.shortlist-form');
@@ -261,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (statusBadge && submitButton) {
                 // Thay đổi badge thành "Đã thêm"
                 statusBadge.textContent = 'Đã thêm';
-                statusBadge.classList.remove('badge-success');
+                statusBadge.classList.remove('badge-info');
                 statusBadge.classList.add('badge-success');
                 
                 // Thay đổi nút thành "Đã thêm" và disable
@@ -282,7 +311,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => {
                     if (!response.ok) {
                         // Nếu có lỗi, khôi phục lại trạng thái cũ
-                        statusBadge.textContent = 'Đáp ứng đủ';
+                        statusBadge.textContent = 'Đã duyệt';
+                        statusBadge.classList.remove('badge-success');
+                        statusBadge.classList.add('badge-info');
                         submitButton.innerHTML = '<i class="fas fa-plus"></i> Thêm';
                         submitButton.classList.remove('btn-dark');
                         submitButton.classList.add('btn-success');
@@ -292,7 +323,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => {
                     console.error('Error:', error);
                     // Khôi phục lại trạng thái cũ nếu có lỗi
-                    statusBadge.textContent = 'Đáp ứng đủ';
+                    statusBadge.textContent = 'Đã duyệt';
+                    statusBadge.classList.remove('badge-success');
+                    statusBadge.classList.add('badge-info');
                     submitButton.innerHTML = '<i class="fas fa-plus"></i> Thêm';
                     submitButton.classList.remove('btn-dark');
                     submitButton.classList.add('btn-success');
