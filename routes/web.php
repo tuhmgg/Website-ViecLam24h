@@ -159,3 +159,4 @@ Route::post('/application/{listingId}/submit', [ApplicantController::class, 'app
 // route job.search và route job.filter
 Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
 
+Route::post('/applicant/reject/{id}', [ApplicantController::class, 'reject'])->name('applicant.reject');
