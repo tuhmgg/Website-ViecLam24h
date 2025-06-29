@@ -40,12 +40,7 @@ class JobPost{
         if($data->hasFile('feature_image')){
             $this->listing->find($id)->update(['feature_image' => $this->getImagePath($data)]);
         }
-        
-        $this->listing->find($id)->update([
-            'application_close_date' => \Carbon\Carbon::createFromFormat('m/d/Y', $data['date'])->format('Y-m-d'),
-            'status' => 'pending'
-        ]);
-        
+    $this->listing->find($id)->update(['application_close_date' => \Carbon\Carbon::createFromFormat('m/d/Y', $data['date'])->format('Y-m-d')]);
         $this->listing->find($id)->update($data->except('feature_image','application_close_date'));
     }
 }

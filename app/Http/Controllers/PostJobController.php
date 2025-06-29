@@ -44,7 +44,7 @@ class PostJobController extends Controller
     {
         $this->job->updatePost($id, $request);
 
-        return back()->with('message', 'Đã cập nhật bài đăng thành công! Bài đăng đã được gửi để xét duyệt lại.');
+        return back()->with('message', 'Đã Lưu Thành Công!');
     }
 
     public function destroy($id)

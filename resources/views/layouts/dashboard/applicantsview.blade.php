@@ -10,10 +10,7 @@
                 <label  for="btncheck1">Đã thêm</label>
 
                 <input type="checkbox" class="btn-check ml-3" id="checkbox2" checked>
-                <label class="" for="btncheck2">Đã duyệt</label>
-
-                <input type="checkbox" class="btn-check ml-3" id="checkbox3" checked>
-                <label class="" for="btncheck3">Chưa duyệt</label>
+                <label class="" for="btncheck2">Chưa thêm</label>
             </div>
         </div>
     </div>

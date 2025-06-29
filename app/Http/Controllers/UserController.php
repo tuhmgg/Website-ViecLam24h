@@ -286,11 +286,11 @@ class UserController extends Controller
     }
 
 //    hàm xem cv đã tải lên
-    public function viewCv(Request $request, $user_id = null)
+    public function viewCv(Request $request)
     {
         // Nếu admin xem CV của người khác
-        if (auth()->check() && auth()->user()->user_type === 'admin' && $user_id) {
-            $user = User::findOrFail($user_id);
+        if (auth()->check() && auth()->user()->user_type === 'admin' && $request->has('user_id')) {
+            $user = User::findOrFail($request->user_id);
         } else {
             // Người dùng tự xem CV của mình
             $user = auth()->user();

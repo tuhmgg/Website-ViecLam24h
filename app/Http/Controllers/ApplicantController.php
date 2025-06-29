@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Mail\ShortlistMail;
 use App\Models\Listing;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Mail;
 
 class ApplicantController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+    
     public function index()
     {
         //        lấy ra số lượng job của user và lấy thông tin các user đã ứng tuyển

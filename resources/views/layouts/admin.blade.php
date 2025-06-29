@@ -80,6 +80,25 @@
             @include('layouts.dashboard.topbar')
             <!-- End of Topbar -->
 
+            <!-- Begin Page Content -->
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: absolute; top: 85px; right:24px; z-index: 1000;">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: absolute; top: 85px; right:24px; z-index: 1000;">
+                    {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             @yield('content')
             <!-- /.container-fluid -->
 

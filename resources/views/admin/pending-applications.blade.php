@@ -41,7 +41,7 @@
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($app->application_date)->format('d/m/Y H:i') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.cv.view', $app->user_id) }}" 
+                                             <a href="{{ route('user.cv.view', ['user_id' => $app->user_id]) }}" 
                                                class="btn btn-info btn-sm" target="_blank" title="Xem CV">
                                                 <i class="fas fa-file-pdf"></i> Xem CV
                                             </a>

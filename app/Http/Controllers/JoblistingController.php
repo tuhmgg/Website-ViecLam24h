@@ -87,6 +87,7 @@ class JoblistingController extends Controller
 
             }
         })->latest()->paginate(8);
+        
         // đếm số lượng job
         $count = Listing::approved()->count();
         // đếm số lượng người đăng bài

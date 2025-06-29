@@ -248,6 +248,14 @@
                                         Gói đăng ký
                                     </a>
                                 @endif
+                                <a class="dropdown-item" href="{{ route('job.favorites') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c1a29b" class="bi bi-heart-fill mx-2" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2.748-.717-2.737C5.6-.281 8 2.223 8 2.223s2.4-2.504 4.717-1.472c1.54.62 2.376 2.2 1.662 3.905C13.197 7.02 8 12 8 12s-5.197-4.98-6.379-7.344C.607 3.228 1.443 1.648 2.983 1.028 5.6-.281 8 2.223 8 2.223z"/>
+                                    </svg>
+                                    Đã lưu
+                                </a>
+
+
                                 <div class="dropdown-divider"></div>
                                 <form id="form-logout" action="{{route('logout')}}" method="post">@csrf
                                     <button id="logout" type="submit" class="dropdown-item">

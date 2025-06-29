@@ -25,7 +25,6 @@
                         <th>Sô ứng viên</th>
                         <th>Chưa duyệt</th>
                         <th>Đã duyệt</th>
-                        <th>Đã từ chối</th>
                         <th>Xem ứng viên</th>
                     </tr>
                     </thead>
@@ -37,7 +36,6 @@
                         <th>Số ứng viên</th>
                         <th>Chưa duyệt</th>
                         <th>Đã duyệt</th>
-                        <th>Đã từ chối</th>
                         <th>Xem ứng viên</th>
                     </tr>
                     </tfoot>

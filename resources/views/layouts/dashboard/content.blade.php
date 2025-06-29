@@ -361,16 +361,10 @@
                                 <td>{{$listing->title}}</td>
                                 <td>{{$listing->pivot->created_at->format('d/m/Y')}}</td>
                                 <td>
-                                    @if($listing->pivot->application_status == 'pending')
+                                    @if($listing->pivot->shortlisted == 0)
                                         <span class="badge badge-warning">Đang chờ</span>
-                                    @elseif($listing->pivot->application_status == 'approved')
-                                        <span class="badge badge-success">Đã chấp nhận</span>
-                                    @elseif($listing->pivot->application_status == 'rejected')
-                                        <span class="badge badge-danger">Đã từ chối</span>
                                     @elseif($listing->pivot->shortlisted == 1)
                                         <span class="badge badge-success">Đã chấp nhận</span>
-                                    @else
-                                        <span class="badge badge-warning">Đang chờ</span>
                                     @endif
                                 </td>
                                 <td>

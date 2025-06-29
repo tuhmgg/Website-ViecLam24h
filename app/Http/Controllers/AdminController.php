@@ -25,9 +25,7 @@ class AdminController extends Controller
         $approvedJobs = Listing::approved()->count();
         $rejectedJobs = Listing::rejected()->count();
         $totalUsers = User::count();
-        $pendingApplications = DB::table('listing_user')->where('application_status', 'pending')->count();
-        $approvedApplications = DB::table('listing_user')->where('application_status', 'approved')->count();
-        $rejectedApplications = DB::table('listing_user')->where('application_status', 'rejected')->count();
+        $pendingApplications = \DB::table('listing_user')->where('application_status', 'pending')->count();
 
         $chartData = [
             'pending' => $pendingJobs,
@@ -42,8 +40,6 @@ class AdminController extends Controller
             'rejectedJobs', 
             'totalUsers', 
             'pendingApplications',
-            'approvedApplications',
-            'rejectedApplications',
             'chartData'
         ));
     }
@@ -170,66 +166,5 @@ class AdminController extends Controller
         // Gửi mail thông báo cho nhà tuyển dụng (sẽ được thêm sau)
         
         return back()->with('success', 'Hồ sơ đã được duyệt và gửi đến nhà tuyển dụng.');
-    }
-
-    /**
-     * Từ chối hồ sơ ứng tuyển
-     */
-    public function rejectApplication($listing_id, $user_id)
-    {
-        DB::table('listing_user')
-            ->where('listing_id', $listing_id)
-            ->where('user_id', $user_id)
-            ->update(['application_status' => 'rejected']);
-
-        return back()->with('success', 'Hồ sơ đã bị từ chối.');
-    }
-
-    /**
-     * Hiển thị danh sách hồ sơ đã duyệt
-     */
-    public function approvedApplications()
-    {
-        $applications = DB::table('listing_user')
-            ->join('users', 'listing_user.user_id', '=', 'users.id')
-            ->join('listings', 'listing_user.listing_id', '=', 'listings.id')
-            ->select(
-                'listing_user.user_id',
-                'listing_user.listing_id',
-                'listing_user.application_status',
-                'listing_user.created_at as application_date',
-                'users.name as applicant_name',
-                'users.email as applicant_email',
-                'listings.title as job_title'
-            )
-            ->where('listing_user.application_status', 'approved')
-            ->orderBy('listing_user.created_at', 'desc')
-            ->paginate(10);
-
-        return view('admin.approved-applications', compact('applications'));
-    }
-
-    /**
-     * Hiển thị danh sách hồ sơ từ chối
-     */
-    public function rejectedApplications()
-    {
-        $applications = DB::table('listing_user')
-            ->join('users', 'listing_user.user_id', '=', 'users.id')
-            ->join('listings', 'listing_user.listing_id', '=', 'listings.id')
-            ->select(
-                'listing_user.user_id',
-                'listing_user.listing_id',
-                'listing_user.application_status',
-                'listing_user.created_at as application_date',
-                'users.name as applicant_name',
-                'users.email as applicant_email',
-                'listings.title as job_title'
-            )
-            ->where('listing_user.application_status', 'rejected')
-            ->orderBy('listing_user.created_at', 'desc')
-            ->paginate(10);
-
-        return view('admin.rejected-applications', compact('applications'));
     }
 }

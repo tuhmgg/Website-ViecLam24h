@@ -95,19 +95,6 @@
                                 <i class="fas fa-users fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Quản lý người dùng
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {{ request()->routeIs('admin.applications.pending') ? 'active' : '' }}" href="{{route('admin.applications.pending')}}">
-                                <i class="fas fa-user-clock fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Hồ sơ chờ duyệt
-                            </a>
-                            <a class="dropdown-item {{ request()->routeIs('admin.applications.approved') ? 'active' : '' }}" href="{{route('admin.applications.approved')}}">
-                                <i class="fas fa-user-check fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Hồ sơ đã duyệt
-                            </a>
-                            <a class="dropdown-item {{ request()->routeIs('admin.applications.rejected') ? 'active' : '' }}" href="{{route('admin.applications.rejected')}}">
-                                <i class="fas fa-user-times fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Hồ sơ từ chối
-                            </a>
                         </div>
                     </li>
                 @endif

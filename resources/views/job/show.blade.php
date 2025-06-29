@@ -8,12 +8,25 @@
         </div>
     @endif
     
-    <img src="{{Storage::url($listing->feature_image)}}" style="width: 100%; height: 17vw;" alt="">
+    <img src="{{ Storage::url($listing->feature_image) }}"
+     style="width: 100%; height: 20vw; object-fit: cover; display: block;"
+     alt="Ảnh bìa">
+
+
 
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center justify-content-md-start">
-                <img class="border-1" style="margin-top: -3vw;border-radius: 100px; height: 150px; box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;" src="{{Storage::url($listing->profile->profile_pic)}}">
+                <img src="{{ Storage::url($listing->feature_image) }}"
+                    alt="Avatar"
+                    style="margin-top: -3vw;
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+                                rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;">
+
             </div>
 
             <div class="col-12 d-flex justify-content-center justify-content-md-start">
@@ -138,8 +151,7 @@
                 </button>
             @endif
         @endif
-
-        {{-- Apply confirmation modal for logged in users --}}
+                {{-- Apply confirmation modal --}}
         <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
             <form action="{{route('application.submit', [$listing->id])}}" method="POST">@csrf
                 <div class="modal-dialog">

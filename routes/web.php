@@ -99,7 +99,10 @@ Route::get('applicants', [ApplicantController::class, 'index'])->name('applicant
 Route::get('applicants/{listing:slug}', [ApplicantController::class, 'view'])->name('applicants.view');
 Route::delete('/applicants/{listingId}/{userId}', [ApplicantController::class, 'removeApplicant'])->name('applicants.remove');
 Route::post('shortlist/{listingId}/{userId}', [ApplicantController::class, 'shortlist'])->name('applicant.shortlist');
-Route::post('reject/{listingId}/{userId}', [ApplicantController::class, 'rejectApplicant'])->name('applicant.reject');
+Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit');
+
+// route job.search và route job.filter
+Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
 
 // route tới suggest
 Route::get('/suggest', [SuggestController::class, 'index'])->name('suggest.index');
@@ -145,11 +148,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
 Route::post('/user/cv/download-pdf', [App\Http\Controllers\UserController::class, 'downloadCvPdfFromBuilder'])->name('user.cv.downloadPdf');
 
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/favorites/{listing}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 });
+Route::get('/jobs/favorites', [FavoriteController::class, 'favorites'])->name('job.favorites');
 
 Route::post('/application/{listingId}/submit', [ApplicantController::class, 'apply'])->name('application.submit')->middleware(['auth']);
 
 // route job.search và route job.filter
 Route::get('/job/search', [JoblistingController::class, 'search'])->name('job.search');
+
+Route::post('/applicant/reject/{id}', [ApplicantController::class, 'reject'])->name('applicant.reject');
