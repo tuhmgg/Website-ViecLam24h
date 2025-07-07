@@ -60,9 +60,6 @@
                         </div>
                         
                         <!-- Phân trang -->
-                        <div class="d-flex justify-content-center">
-                            {{ $users->links() }}
-                        </div>
                     @else
                         <div class="text-center py-4">
                             <i class="fas fa-users fa-3x text-gray-300 mb-3"></i>
